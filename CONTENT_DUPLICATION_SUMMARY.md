@@ -263,3 +263,4 @@ Then use templates:
 
 **Result: Update content in ONE place, reflects everywhere!**
 
+

@@ -9,23 +9,23 @@ import SchemaInjector from '@/components/SchemaInjector'
 import { HOME, BRAND } from '@/constants/content'
 
 export const metadata: Metadata = {
-  title: HOME.meta.title,
-  description: HOME.meta.description,
-  keywords: [...HOME.meta.keywords],
+  title: 'Global Workforce Solutions for Oil & Gas, IT & Hospitality',
+  description: 'Hudson delivers reliable, compliant and scalable staffing solutions for Oil & Gas, IT, and Hospitality industries worldwide. Connect with 10,000+ verified professionals.',
+  keywords: ['staffing solutions', 'oil and gas staffing', 'IT staffing', 'hospitality staffing', 'workforce solutions', 'talent acquisition', 'Hudson', 'global staffing', 'manpower services'],
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: `${BRAND.shortName} IT & Manpower Services | Global Workforce Solutions`,
-    description: HOME.meta.description,
-    url: BRAND.url,
-    siteName: BRAND.name,
+    title: 'Hudson IT & Manpower Services | Global Workforce Solutions',
+    description: 'Hudson delivers reliable, compliant and scalable staffing solutions for Oil & Gas, IT, and Hospitality industries worldwide.',
+    url: 'https://hudsonit.com',
+    siteName: 'Hudson IT & Manpower Services',
     images: [
       {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: BRAND.name,
+        alt: 'Hudson IT & Manpower Services',
       },
     ],
     locale: 'en_US',
@@ -40,7 +40,7 @@ const organizationSchema = {
   name: BRAND.name,
   url: BRAND.url,
   logo: `${BRAND.url}/images/logo.png`,
-  description: BRAND.description,
+  description: `Global workforce solutions for ${BRAND.industries}`,
   address: {
     '@type': 'PostalAddress',
     streetAddress: BRAND.offices.usa.street,
@@ -49,22 +49,12 @@ const organizationSchema = {
     postalCode: BRAND.offices.usa.zip,
     addressCountry: BRAND.offices.usa.country,
   },
-  contactPoint: [
-    {
-      '@type': 'ContactPoint',
-      telephone: BRAND.phone.usa,
-      contactType: 'Customer Service',
-      email: BRAND.email,
-      areaServed: 'US',
-    },
-    {
-      '@type': 'ContactPoint',
-      telephone: BRAND.phone.india,
-      contactType: 'Customer Service',
-      email: BRAND.email,
-      areaServed: 'IN',
-    },
-  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: BRAND.phone.usa,
+    contactType: 'Customer Service',
+    email: BRAND.email,
+  },
   sameAs: [
     BRAND.social.linkedin,
     BRAND.social.twitter,
@@ -104,43 +94,18 @@ const serviceSchema = {
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Staffing Solutions',
-    itemListElement: [
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: HOME.industryShowcase[0].title,
-          description: HOME.industryShowcase[0].card.description,
-        },
+    itemListElement: HOME.industryShowcase.map((industry) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: industry.title,
+        description: industry.card.description,
       },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: HOME.industryShowcase[1].title,
-          description: HOME.industryShowcase[1].card.description,
-        },
-      },
-      {
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: HOME.industryShowcase[2].title,
-          description: HOME.industryShowcase[2].card.description,
-        },
-      },
-    ],
+    })),
   },
 }
 
 export default function HomePage() {
-  const segmentCards = HOME.segmentCards.map(card => ({
-    icon: card.icon,
-    title: card.card.title,
-    description: card.card.description,
-    href: card.href,
-  }))
-
   return (
     <>
       <SchemaInjector schema={organizationSchema} />
@@ -150,7 +115,6 @@ export default function HomePage() {
       <main>
         <Hero />
         
-        {/* Main Segmented Cards Section - Ultra Modern */}
         <section className="relative py-32 overflow-hidden bg-white" aria-labelledby="services-heading">
           <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
             <div className="text-center mb-20">
@@ -161,16 +125,9 @@ export default function HomePage() {
                 Comprehensive workforce solutions tailored to your industry needs
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {segmentCards.map((card, index) => (
-                <SegmentCard
-                  key={card.href}
-                  icon={card.icon}
-                  title={card.title}
-                  description={card.description}
-                  href={card.href}
-                  delay={index * 0.1}
-                />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {HOME.segmentCards.map((card, index) => (
+                <SegmentCard key={card.href} icon={card.icon} title={card.card.title} description={card.card.description} href={card.href} delay={index * 0.1} />
               ))}
             </div>
           </div>

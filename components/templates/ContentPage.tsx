@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import Breadcrumbs from '@/components/Breadcrumbs'
 import SchemaInjector from '@/components/SchemaInjector'
 import ContentPageClient from './ContentPageClient'
 
@@ -74,4 +73,3 @@ export default function ContentPage({ content }: ContentPageProps) {
     </>
   )
 }
-

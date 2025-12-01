@@ -7,3 +7,4 @@ export const metadata = generateContentMetadata(EMPLOYERS)
 export default function ForEmployersPage() {
   return <ContentPage content={EMPLOYERS} />
 }
+

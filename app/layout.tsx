@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import Preloader from '@/components/Preloader'
 
 export const metadata: Metadata = {
   title: {
@@ -65,6 +66,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen bg-white">
+        <Preloader />
         {children}
       </body>
     </html>

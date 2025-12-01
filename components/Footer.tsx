@@ -8,8 +8,6 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
   const [logoError, setLogoError] = useState(false)
 
-  const footerLinks = FOOTER.links
-
   return (
     <footer className="bg-primary text-white mt-32" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -19,9 +17,9 @@ export default function Footer() {
             <div className="mb-4">
               {!logoError ? (
                 <img
-                  src="/images/hudson-logo.png"
+                  src="/images/hudson-logo.jpeg"
                   alt="Hudson Information Technology and Manpower Services"
-                  className="h-20 w-auto object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-300 cursor-pointer"
+                  className="h-16 w-auto object-contain brightness-0 invert"
                   onError={() => setLogoError(true)}
                 />
               ) : (
@@ -69,7 +67,7 @@ export default function Footer() {
           </div>
 
           {/* Links Columns */}
-          {Object.entries(footerLinks).map(([category, links]) => (
+          {Object.entries(FOOTER.links).map(([category, links]) => (
             <div key={category}>
               <h3 className="font-heading font-semibold mb-4">{category}</h3>
               <ul className="space-y-2">
@@ -93,32 +91,21 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-white/70">
             <div>
               <strong className="text-white block mb-1">Email</strong>
-              <a href={`mailto:${BRAND.email}`} className="hover:text-accent transition-colors block mb-1">
+              <a href={`mailto:${BRAND.email}`} className="hover:text-accent transition-colors">
                 {BRAND.email}
-              </a>
-              <a href={`mailto:${BRAND.emailIT}`} className="hover:text-accent transition-colors text-sm text-white/70">
-                {BRAND.emailIT} (IT)
               </a>
             </div>
             <div>
               <strong className="text-white block mb-1">Phone</strong>
-              <a href={`tel:${BRAND.phone.usa.replace(/\s/g, '')}`} className="hover:text-accent transition-colors block mb-1">
-                USA: {BRAND.phone.usa}
-              </a>
-              <a href={`tel:${BRAND.phone.india.replace(/\s/g, '')}`} className="hover:text-accent transition-colors text-sm text-white/70">
-                India: {BRAND.phone.india}
+              <a href={`tel:${BRAND.phone.usa.replace(/\s/g, '')}`} className="hover:text-accent transition-colors">
+                {BRAND.phone.usa}
               </a>
             </div>
             <div>
-              <strong className="text-white block mb-1">USA Office</strong>
-              <address className="not-italic text-sm">
+              <strong className="text-white block mb-1">Address</strong>
+              <address className="not-italic">
                 {BRAND.offices.usa.street}<br />
                 {BRAND.offices.usa.city}, {BRAND.offices.usa.state} {BRAND.offices.usa.zip}
-              </address>
-              <strong className="text-white block mb-1 mt-4">India Office</strong>
-              <address className="not-italic text-sm">
-                {BRAND.offices.india.street}<br />
-                {BRAND.offices.india.area}, {BRAND.offices.india.city} {BRAND.offices.india.zip}
               </address>
             </div>
           </div>

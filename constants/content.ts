@@ -1,7 +1,6 @@
 /**
  * Centralized Content Constants
  * Single source of truth for all website content
- * Update content here and it reflects everywhere
  */
 
 // ============================================================================
@@ -61,11 +60,11 @@ export const BRAND = {
 // ============================================================================
 
 export const NAV_LINKS = [
-  { href: '/for-employers', label: 'For Employers' },
   { href: '/for-employees', label: 'For Employees' },
   { href: '/oil-and-gas-staffing', label: 'Oil & Gas' },
   { href: '/us-it-staffing', label: 'IT Staffing' },
   { href: '/hospitality-staffing', label: 'Hospitality' },
+  { href: '/software-solutions', label: 'Software Solutions' },
 ] as const
 
 // ============================================================================
@@ -125,29 +124,75 @@ export const EMPLOYERS = {
   shortTitle: 'Hire Verified Talent',
   meta: {
     title: 'For Employers - Hire Verified Talent | Hudson IT & Manpower Services',
-    description: 'Hire pre-screened, verified professionals for your Oil & Gas, IT, and Hospitality projects. Fast mobilization, VMS integration, and 24/7 support.',
-    keywords: ['hire talent', 'staffing for employers', 'workforce solutions', 'talent acquisition', 'recruitment services', 'Hudson'],
+    description: 'Connect with pre-screened professionals ready to deploy on your projects. Fast, compliant, and scalable staffing solutions.',
+    keywords: ['hire talent', 'employer services', 'staffing solutions', 'talent acquisition', 'workforce solutions', 'Hudson'],
   },
   hero: {
-    heading: 'Hire Verified Talent for Your Projects',
-    description: 'Connect with pre-screened professionals ready to deploy on your Oil & Gas, IT, and Hospitality projects. Fast mobilization, seamless VMS integration, and round-the-clock support.',
+    heading: 'Hire Verified Talent Fast',
+    description: 'Connect with pre-screened professionals ready to deploy on your projects. Fast, compliant, and scalable staffing solutions across industries.',
   },
   features: [
     {
-      title: 'Fast Mobilization',
-      description: 'Deploy qualified professionals quickly with our streamlined onboarding and compliance processes.',
+      title: 'Pre-Screened Talent',
+      description: 'Access verified professionals with skills, certifications, and experience matched to your requirements.',
     },
     {
-      title: 'VMS Integration',
-      description: 'Seamless workflow integration with leading vendor management systems for efficient operations.',
+      title: 'Rapid Deployment',
+      description: 'Quick onboarding and deployment processes to get your team operational fast.',
     },
     {
-      title: '24/7 Support',
-      description: 'Round-the-clock assistance for clients and candidates to ensure project success.',
+      title: 'Compliance Ready',
+      description: 'All candidates are fully compliant with industry standards, certifications, and regulatory requirements.',
     },
     {
-      title: 'Full Compliance',
-      description: 'Complete documentation and regulatory expertise across all industries and jurisdictions.',
+      title: 'Dedicated Support',
+      description: '24/7 support and account management to ensure smooth operations and ongoing success.',
+    },
+  ],
+  cta: {
+    text: 'Hire Talent Now',
+    href: '/contact',
+  },
+  card: {
+    title: 'For Employers',
+    description: 'Hire Verified Talent - Connect with pre-screened professionals ready to deploy on your projects.',
+  },
+} as const
+
+// ============================================================================
+// SOFTWARE SOLUTIONS CONTENT
+// ============================================================================
+
+export const SOFTWARE_SOLUTIONS = {
+  href: '/software-solutions',
+  icon: '💼',
+  title: 'Software Solutions',
+  shortTitle: 'Enterprise Software Development',
+  meta: {
+    title: 'Software Solutions - Enterprise Development | Hudson IT & Manpower Services',
+    description: 'Custom software development, enterprise applications, cloud solutions, and digital transformation services for businesses worldwide.',
+    keywords: ['software solutions', 'enterprise software', 'custom development', 'cloud solutions', 'digital transformation', 'software development', 'Hudson'],
+  },
+  hero: {
+    heading: 'Enterprise Software Solutions',
+    description: 'Transform your business with custom software development, enterprise applications, cloud solutions, and digital transformation services tailored to your needs.',
+  },
+  features: [
+    {
+      title: 'Custom Development',
+      description: 'Bespoke software solutions designed and developed to meet your unique business requirements and workflows.',
+    },
+    {
+      title: 'Enterprise Applications',
+      description: 'Scalable enterprise-grade applications with robust architecture, security, and performance optimization.',
+    },
+    {
+      title: 'Cloud Solutions',
+      description: 'Cloud-native applications, migration services, and infrastructure management for modern businesses.',
+    },
+    {
+      title: 'Digital Transformation',
+      description: 'End-to-end digital transformation services to modernize your business processes and technology stack.',
     },
   ],
   cta: {
@@ -155,12 +200,12 @@ export const EMPLOYERS = {
     href: '/contact',
   },
   card: {
-    title: 'For Employers',
-    description: 'Hire Verified Talent - Connect with pre-screened professionals ready to deploy on your projects.',
+    title: 'Software Solutions',
+    description: 'Enterprise Software Development - Custom solutions, cloud applications, and digital transformation services.',
   },
   navButton: {
-    text: 'Hire Talent',
-    href: '/for-employers',
+    text: 'Explore Solutions',
+    href: '/software-solutions',
   },
 } as const
 
@@ -362,8 +407,8 @@ export const HOME = {
     description: `Hudson delivers reliable, compliant and scalable staffing across industries worldwide.`,
     cta: {
       primary: {
-        text: 'For Employers',
-        href: EMPLOYERS.href,
+        text: 'Software Solutions',
+        href: SOFTWARE_SOLUTIONS.href,
       },
       secondary: {
         text: 'For Employees',
@@ -374,6 +419,7 @@ export const HOME = {
   segmentCards: [
     EMPLOYEES,
     EMPLOYERS,
+    SOFTWARE_SOLUTIONS,
     INDUSTRIES.oilGas,
     INDUSTRIES.it,
     INDUSTRIES.hospitality,
@@ -436,10 +482,10 @@ export const HOME = {
 export const FOOTER = {
   description: `Global workforce solutions for ${BRAND.industries} industries.`,
   links: {
-    'For Employers': [
-      { href: EMPLOYERS.href, label: 'Hire Talent' },
+    'Software Solutions': [
+      { href: SOFTWARE_SOLUTIONS.href, label: 'Enterprise Development' },
+      { href: INDUSTRIES.it.href, label: 'IT Staffing' },
       { href: INDUSTRIES.oilGas.href, label: 'Oil & Gas Staffing' },
-      { href: INDUSTRIES.it.href, label: 'US IT Staffing' },
       { href: INDUSTRIES.hospitality.href, label: 'Hospitality Staffing' },
     ],
     'For Employees': [
@@ -465,6 +511,6 @@ export const getIndustryByHref = (href: string) => {
 export const getSegmentCard = (href: string) => {
   if (href === EMPLOYEES.href) return EMPLOYEES
   if (href === EMPLOYERS.href) return EMPLOYERS
+  if (href === SOFTWARE_SOLUTIONS.href) return SOFTWARE_SOLUTIONS
   return getIndustryByHref(href)
 }
-

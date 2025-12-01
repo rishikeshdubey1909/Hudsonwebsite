@@ -58,6 +58,32 @@
                 linear-gradient(135deg, #F05A28, #000000) border-box;
     border: 2px solid transparent;
   }
+  
+  /* Emoji styling - blend with design */
+  .emoji-blend {
+    display: inline-block;
+    filter: grayscale(30%) brightness(0.9) sepia(20%) saturate(150%) hue-rotate(5deg);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    will-change: filter, transform;
+  }
+  
+  .emoji-blend:hover {
+    filter: grayscale(0%) brightness(1.1) sepia(30%) saturate(200%) hue-rotate(5deg) drop-shadow(0 4px 8px rgba(240, 90, 40, 0.3));
+    transform: scale(1.05);
+  }
+  
+  /* Card emoji specific styling */
+  .card-emoji {
+    display: inline-block;
+    filter: grayscale(40%) brightness(0.95) sepia(25%) saturate(180%) hue-rotate(5deg);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: filter, transform;
+  }
+  
+  .card-emoji:hover {
+    filter: grayscale(0%) brightness(1.15) sepia(40%) saturate(250%) hue-rotate(5deg) drop-shadow(0 6px 12px rgba(240, 90, 40, 0.4));
+    transform: scale(1.1) rotate(5deg);
+  }
 }
 
 @keyframes gradient {
