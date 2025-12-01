@@ -17,7 +17,7 @@ export default function Footer() {
             <div className="mb-4">
               {!logoError ? (
                 <img
-                  src="/images/hudson-logo.jpeg"
+                  src="/images/hudson-logo.png"
                   alt="Hudson Information Technology and Manpower Services"
                   className="h-16 w-auto object-contain brightness-0 invert"
                   onError={() => setLogoError(true)}
@@ -88,24 +88,42 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div className="border-t border-white/20 pt-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-white/70">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-white/70">
             <div>
-              <strong className="text-white block mb-1">Email</strong>
-              <a href={`mailto:${BRAND.email}`} className="hover:text-accent transition-colors">
+              <strong className="text-white block mb-2">Email</strong>
+              <a href={`mailto:${BRAND.email}`} className="hover:text-accent transition-colors block mb-1">
                 {BRAND.email}
               </a>
-            </div>
-            <div>
-              <strong className="text-white block mb-1">Phone</strong>
-              <a href={`tel:${BRAND.phone.usa.replace(/\s/g, '')}`} className="hover:text-accent transition-colors">
-                {BRAND.phone.usa}
+              <a href={`mailto:${BRAND.emailIT}`} className="hover:text-accent transition-colors text-xs opacity-80">
+                {BRAND.emailIT} (IT Support)
               </a>
             </div>
             <div>
-              <strong className="text-white block mb-1">Address</strong>
+              <strong className="text-white block mb-2">Phone</strong>
+              <a href={`tel:${BRAND.phone.usa.replace(/\s/g, '')}`} className="hover:text-accent transition-colors block mb-1">
+                {BRAND.phone.usa} (USA)
+              </a>
+              <a href={`tel:${BRAND.phone.usaOther.replace(/\s/g, '')}`} className="hover:text-accent transition-colors block mb-1 text-xs opacity-80">
+                {BRAND.phone.usaOther} (USA)
+              </a>
+              <a href={`tel:${BRAND.phone.india.replace(/\s/g, '')}`} className="hover:text-accent transition-colors block text-xs opacity-80">
+                {BRAND.phone.india} (India)
+              </a>
+            </div>
+            <div>
+              <strong className="text-white block mb-2">USA Office</strong>
               <address className="not-italic">
                 {BRAND.offices.usa.street}<br />
-                {BRAND.offices.usa.city}, {BRAND.offices.usa.state} {BRAND.offices.usa.zip}
+                {BRAND.offices.usa.city}, {BRAND.offices.usa.state} {BRAND.offices.usa.zip}<br />
+                {BRAND.offices.usa.country}
+              </address>
+            </div>
+            <div>
+              <strong className="text-white block mb-2">India Office</strong>
+              <address className="not-italic">
+                {BRAND.offices.india.street}<br />
+                {BRAND.offices.india.area}, {BRAND.offices.india.city} {BRAND.offices.india.zip}<br />
+                {BRAND.offices.india.country}
               </address>
             </div>
           </div>
