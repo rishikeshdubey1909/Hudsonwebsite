@@ -1,7 +1,7 @@
 'use client'
 
 import { memo } from 'react'
-import BaseCard from './ui/BaseCard'
+import UltraPremiumCard from './ui/UltraPremiumCard'
 
 interface SegmentCardProps {
   icon: string
@@ -12,7 +12,7 @@ interface SegmentCardProps {
 }
 
 function SegmentCard({ icon, title, description, href, delay = 0 }: SegmentCardProps) {
-  return <BaseCard icon={icon} title={title} description={description} href={href} delay={delay} iconSize="text-5xl" />
+  return <UltraPremiumCard icon={icon} title={title} description={description} href={href} delay={delay} />
 }
 
 export default memo(SegmentCard)

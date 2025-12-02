@@ -50,8 +50,6 @@ export const BRAND = {
   },
   social: {
     linkedin: 'https://www.linkedin.com/company/hudsonit',
-    twitter: 'https://twitter.com/hudsonit',
-    facebook: 'https://www.facebook.com/hudsonit',
   },
 } as const
 
@@ -64,7 +62,6 @@ export const NAV_LINKS = [
   { href: '/oil-and-gas-staffing', label: 'Oil & Gas' },
   { href: '/us-it-staffing', label: 'IT Staffing' },
   { href: '/hospitality-staffing', label: 'Hospitality' },
-  { href: '/software-solutions', label: 'Software Solutions' },
 ] as const
 
 // ============================================================================
@@ -204,7 +201,7 @@ export const SOFTWARE_SOLUTIONS = {
     description: 'Enterprise Software Development - Custom solutions, cloud applications, and digital transformation services.',
   },
   navButton: {
-    text: 'Explore Solutions',
+    text: 'Software Solutions',
     href: '/software-solutions',
   },
 } as const
@@ -220,50 +217,116 @@ export const INDUSTRIES = {
     title: 'Oil & Gas Staffing',
     shortTitle: 'Oil & Gas Staffing Solutions',
     meta: {
-      title: 'Oil & Gas Staffing Solutions | Expert Field Technicians & Engineers',
-      description: 'Expert field technicians, engineers, and project managers for upstream, midstream, and downstream operations. HSE compliant staffing solutions.',
-      keywords: ['oil and gas staffing', 'energy staffing', 'field technicians', 'petroleum engineers', 'HSE compliance', 'upstream staffing', 'midstream staffing', 'downstream staffing'],
+      title: 'Oil & Gas Staffing Solutions | Expert Engineers, Technicians & Skilled Trades',
+      description: 'Comprehensive Oil & Gas staffing solutions from executive engineers to skilled trades. Engineering, project management, specialized functions, and blue-collar professionals with HSE compliance.',
+      keywords: ['oil and gas staffing', 'energy staffing', 'petroleum engineers', 'field technicians', 'HSE compliance', 'project managers', 'welders', 'pipe fitters', 'riggers', 'upstream staffing', 'midstream staffing', 'downstream staffing'],
     },
     hero: {
       heading: 'Oil & Gas Staffing Solutions',
-      description: 'Expert field technicians, engineers, and project managers for upstream, midstream, and downstream operations. Full HSE compliance and rapid deployment capabilities.',
+      description: 'Comprehensive talent solutions for the energy sector—from executive engineers and project managers to skilled trades professionals. Dual-track recruitment methodology ensuring quality leadership and rapid skilled labor deployment.',
     },
     card: {
       title: 'Oil & Gas Staffing Solutions',
-      description: 'Expert field technicians, engineers, and project managers for upstream, midstream, and downstream operations.',
+      description: 'Expert engineers, project managers, specialized professionals, and skilled trades for upstream, midstream, and downstream operations.',
     },
     showcase: {
       title: 'Oil & Gas Staffing',
       bullets: [
-        'Expert field technicians and engineers',
-        'Compliance with HSE standards',
-        'Rapid deployment for critical projects',
+        'Engineering & Technical professionals',
+        'Project Management & Leadership roles',
+        'Specialized Functions & Operational staff',
+        'Blue-Collar & Skilled Trades',
+        'HSE compliant and certified personnel',
       ],
     },
     sections: [
       {
-        title: 'Expert Field Technicians',
-        description: 'Skilled professionals with hands-on experience in drilling, production, maintenance, and operations across all segments of the oil and gas industry.',
+        title: 'Engineering & Technical Roles',
+        description: 'Expert engineering professionals for complex Oil & Gas projects across all segments—upstream, midstream, and downstream operations.',
         items: [
-          'Drilling and completion specialists',
-          'Production operators and technicians',
-          'Maintenance and repair professionals',
-          'Safety and environmental compliance experts',
+          'Petroleum & Drilling Engineers',
+          'Geologists',
+          'Civil/Construction Engineers',
+          'Mechanical Engineers',
+          'MEP Engineers',
+          'Pipeline Engineers',
+          'Process Engineers',
+          'FEED Engineers',
+          'Asset Integrity Specialists',
         ],
       },
       {
-        title: 'Engineering Excellence',
-        description: 'Qualified petroleum engineers, process engineers, and project managers for complex upstream, midstream, and downstream projects.',
+        title: 'Project Management & Leadership',
+        description: 'Certified project management professionals and leadership roles to ensure successful project execution and delivery.',
         items: [
-          'Petroleum and reservoir engineers',
-          'Process and facilities engineers',
-          'Project and construction managers',
-          'Quality assurance and control specialists',
+          'PMP-Certified Project Managers',
+          'Project Engineers',
+          'Contracts & Procurement Managers',
+          'Estimation Engineers',
         ],
       },
       {
-        title: 'HSE Compliance',
-        description: 'All personnel are fully certified and compliant with Health, Safety, and Environmental standards. Complete documentation and regulatory expertise for global deployments.',
+        title: 'Specialized Functions',
+        description: 'Specialized professionals supporting critical operations, safety, and compliance requirements.',
+        items: [
+          'HSE Officers',
+          'Legal Advisors',
+          'Facility Management Specialists',
+          'EMI Technicians',
+          'Commissioning & Shutdown Experts',
+          'Maintenance & Design Engineers',
+          'Architectural Engineers',
+        ],
+      },
+      {
+        title: 'Operational & Supervisory Roles',
+        description: 'Experienced supervisors and operational staff ensuring quality and compliance on-site.',
+        items: [
+          'Shift Supervisors',
+          'Site Supervisors',
+          'QA/QC Engineers',
+          'Procurement/Contract Coordinators',
+        ],
+      },
+      {
+        title: 'Blue-Collar & Skilled Trades',
+        description: 'Certified skilled trades professionals ready for rapid deployment to meet project deadlines.',
+        items: [
+          'Welders',
+          'Steel Fabricators (Marine & Construction)',
+          'Pipe Fitters',
+          'Riggers',
+          'Scaffolders',
+          'Electricians',
+          'Plumbers',
+          'Carpenters',
+          'Crane Operators',
+          'Machine Operators',
+        ],
+      },
+      {
+        title: 'Recruitment Methodology for White-Collar Roles',
+        description: 'Our 3-step executive screening model ensures we deliver only the best-fit candidates for engineering, leadership, and technical specialist positions.',
+        items: [
+          'Resume and Credentials Review: Validating qualifications & achievements',
+          'Recruiter Interview: Assessing leadership style, motivation, and industry fit',
+          'Video Interview with Account Manager: Re-evaluating technical knowledge, cultural adaptability, and readiness to lead',
+        ],
+        note: 'Focused on delivering only a shortlist of the best-fit candidates, saving client time and ensuring project readiness.',
+      },
+      {
+        title: 'Recruitment Methodology for Blue-Collar & Skilled Trades',
+        description: 'Designed for fast mobilization to meet project deadlines without compromise.',
+        items: [
+          'Targeted recruitment campaigns in talent-rich geographies across India, Southeast Asia, and Africa (partners)',
+          'Pre-screening of candidates for skills, certifications, and safety knowledge',
+          'Client-involved hiring drives where management can conduct mass interviews and trade tests',
+          'Fast mobilization designed to meet project deadlines without compromise',
+        ],
+      },
+      {
+        title: 'Our Approach',
+        description: 'This dual-track approach balances quality assurance required for leadership and technical roles with the speed and scale needed for skilled labor deployment. All personnel are fully certified and compliant with Health, Safety, and Environmental standards.',
       },
     ],
     cta: {
@@ -482,20 +545,16 @@ export const HOME = {
 export const FOOTER = {
   description: `Global workforce solutions for ${BRAND.industries} industries.`,
   links: {
-    'Software Solutions': [
+    'Hudson Manpower': [
       { href: SOFTWARE_SOLUTIONS.href, label: 'Enterprise Development' },
       { href: INDUSTRIES.it.href, label: 'IT Staffing' },
       { href: INDUSTRIES.oilGas.href, label: 'Oil & Gas Staffing' },
       { href: INDUSTRIES.hospitality.href, label: 'Hospitality Staffing' },
     ],
-    'For Employees': [
-      { href: EMPLOYEES.href, label: 'Find Jobs' },
-      { href: EMPLOYEES.href, label: 'Career Resources' },
-      { href: EMPLOYEES.href, label: 'Apply Now' },
-    ],
     'Company': [
       { href: '/about', label: 'About Us' },
       { href: '/contact', label: 'Contact Us' },
+      { href: '/careers', label: 'Careers' },
     ],
   },
 } as const

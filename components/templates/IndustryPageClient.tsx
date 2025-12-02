@@ -8,6 +8,7 @@ interface IndustrySection {
   title: string
   description: string
   items?: ReadonlyArray<string>
+  note?: string
 }
 
 interface IndustryPageClientProps {
@@ -29,11 +30,12 @@ interface IndustryPageClientProps {
 export default function IndustryPageClient({ content }: IndustryPageClientProps) {
   return (
     <main className="min-h-screen">
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: content.title, href: content.href }]} />
-      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="mb-8">
+            <Breadcrumbs items={[{ label: content.title, href: content.href }]} />
+          </div>
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -66,7 +68,7 @@ export default function IndustryPageClient({ content }: IndustryPageClientProps)
                 <h2 className="text-3xl font-bold mb-4">{section.title}</h2>
                 <p className="text-text/70 leading-relaxed mb-6">{section.description}</p>
                 {section.items && (
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 mb-6">
                     {section.items.map((item, itemIndex) => (
                       <li key={itemIndex} className="flex items-start text-text/70">
                         <span className="text-accent mr-2">•</span>
@@ -74,6 +76,11 @@ export default function IndustryPageClient({ content }: IndustryPageClientProps)
                       </li>
                     ))}
                   </ul>
+                )}
+                {section.note && (
+                  <div className="mt-6 p-4 bg-accent/10 border-l-4 border-accent rounded-r-lg">
+                    <p className="text-text/80 italic leading-relaxed">{section.note}</p>
+                  </div>
                 )}
               </motion.div>
             ))}

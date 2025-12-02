@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Preloader from '@/components/Preloader'
+import GSAPProvider from '@/components/GSAPProvider'
 
 export const metadata: Metadata = {
   title: {
@@ -67,7 +68,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-white">
         <Preloader />
-        {children}
+        <GSAPProvider>
+          {children}
+        </GSAPProvider>
       </body>
     </html>
   )

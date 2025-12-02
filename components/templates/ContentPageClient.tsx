@@ -27,11 +27,12 @@ interface ContentPageClientProps {
 export default function ContentPageClient({ content }: ContentPageClientProps) {
   return (
     <main className="min-h-screen">
-      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: content.title, href: content.href }]} />
-      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="mb-8">
+            <Breadcrumbs items={[{ label: content.title, href: content.href }]} />
+          </div>
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}

@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { memo } from 'react'
 
 interface BreadcrumbItem {
   label: string
@@ -11,7 +12,7 @@ interface BreadcrumbsProps {
   items: BreadcrumbItem[]
 }
 
-export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
     <nav aria-label="Breadcrumb" className="py-4">
       <ol className="flex items-center space-x-2 text-sm" itemScope itemType="https://schema.org/BreadcrumbList">
@@ -46,4 +47,6 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
     </nav>
   )
 }
+
+export default memo(Breadcrumbs)
 

@@ -1,10 +1,12 @@
 'use client'
 
+import { memo } from 'react'
+
 interface SchemaInjectorProps {
   schema: object
 }
 
-export default function SchemaInjector({ schema }: SchemaInjectorProps) {
+function SchemaInjector({ schema }: SchemaInjectorProps) {
   return (
     <script
       type="application/ld+json"
@@ -12,4 +14,6 @@ export default function SchemaInjector({ schema }: SchemaInjectorProps) {
     />
   )
 }
+
+export default memo(SchemaInjector)
 

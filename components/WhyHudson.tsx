@@ -1,55 +1,48 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { memo, useState, useCallback } from 'react'
+import { memo } from 'react'
 import { HOME } from '@/constants/content'
-import SectionHeader from './ui/SectionHeader'
-import BaseCard from './ui/BaseCard'
+import SolutionsHeader from './SolutionsHeader'
+import PremiumTrustCard from './ui/PremiumTrustCard'
 
 function WhyHudson() {
   return (
-    <section className="relative py-32 overflow-hidden bg-light" aria-labelledby="why-hudson-heading">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <SectionHeader
-          id="why-hudson-heading"
-          title="Why Choose Hudson"
-          description="Trusted by leading companies worldwide for reliable workforce solutions and exceptional service delivery."
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section 
+      className="relative py-28 lg:py-36 overflow-hidden bg-light" 
+      aria-labelledby="why-hudson-heading"
+      data-section-reveal
+    >
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.012] pointer-events-none">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(45deg, currentColor 1px, transparent 1px),
+                            linear-gradient(-45deg, currentColor 1px, transparent 1px)`,
+          backgroundSize: '40px 40px',
+        }} />
+      </div>
+      
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
+        <div data-reveal-child>
+          <SolutionsHeader
+            id="why-hudson-heading"
+            title="Why Choose Hudson"
+            description="Trusted by leading companies worldwide for reliable workforce solutions and exceptional service delivery."
+          />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-16">
           {HOME.trustSignals.map((signal, index) => (
-            <TrustSignalCard key={signal.label} signal={signal} index={index} />
+            <PremiumTrustCard
+              key={signal.label}
+              icon={signal.icon}
+              value={signal.value}
+              label={signal.label}
+              description={signal.description}
+              delay={index * 0.08}
+            />
           ))}
         </div>
       </div>
     </section>
-  )
-}
-
-function TrustSignalCard({ signal, index }: { signal: { value: string; label: string; description: string; icon: string }; index: number }) {
-  const [isHovered, setIsHovered] = useState(false)
-  const handleHoverStart = useCallback(() => setIsHovered(true), [])
-  const handleHoverEnd = useCallback(() => setIsHovered(false), [])
-
-  return (
-    <BaseCard
-      icon={signal.icon}
-      iconSize="text-4xl"
-      title={signal.label}
-      description={signal.description}
-      delay={index * 0.1}
-      hoverY={-5}
-      showShine={false}
-    >
-      <motion.div
-        className="text-4xl font-bold gradient-text mb-2"
-        animate={{ backgroundPosition: isHovered ? ['0%', '100%', '0%'] : '0%' }}
-        transition={{ duration: 2, repeat: isHovered ? Infinity : 0 }}
-        onHoverStart={handleHoverStart}
-        onHoverEnd={handleHoverEnd}
-      >
-        {signal.value}
-      </motion.div>
-    </BaseCard>
   )
 }
 
