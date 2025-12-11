@@ -35,7 +35,7 @@ export default function Footer() {
                 <motion.img
                   src="/images/hudson-logo.png"
                   alt="Hudson Information Technology and Manpower Services"
-                  className="h-16 w-auto object-contain brightness-0 invert"
+                  className="h-16 w-auto object-contain"
                   onError={() => setLogoError(true)}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}

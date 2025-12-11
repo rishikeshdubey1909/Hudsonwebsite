@@ -6,15 +6,15 @@ import { BRAND } from '@/constants/content'
 import AboutPageClient from './AboutPageClient'
 
 export const metadata: Metadata = {
-  title: `About Us - ${BRAND.name}`,
-  description: `Learn about ${BRAND.shortName}, founded in ${BRAND.founded}, and our mission to provide global workforce solutions.`,
-  keywords: ['about Hudson', 'Hudson manpower', 'company history', 'founders', 'workforce solutions'],
+  title: `About Us | ${BRAND.name}`,
+  description: `The Hudson Group comprises HudsonIT Consultancy Ltd and Hudson Manpower Inc. Founded in ${BRAND.founded}, we transform businesses through cutting-edge digital solutions and outstanding staffing services. Meet our leadership team and learn about our principles.`,
+  keywords: ['about Hudson', 'Hudson manpower', 'company history', 'founders', 'workforce solutions', 'Hudson Group', 'HudsonIT', 'leadership team', 'Mayank Doultani', 'Vikas Singh'],
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: `About Us - ${BRAND.name}`,
-    description: `Founded in ${BRAND.founded}, ${BRAND.shortName} delivers reliable staffing solutions worldwide.`,
+    title: `About Us | ${BRAND.name}`,
+    description: `The Hudson Group: Empowering businesses with innovative software and exceptional talent since ${BRAND.founded}.`,
     url: `${BRAND.url}/about`,
   },
 }

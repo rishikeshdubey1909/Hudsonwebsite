@@ -167,3 +167,6 @@ const parallaxRef = useParallax({ speed: 20, scrub: 0.6 })
 - Production-ready code with proper TypeScript types
 - Fully responsive and mobile-optimized
 
+
+
+

@@ -1,10 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState, memo } from 'react'
+import { motion } from 'framer-motion'
+import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import ModernIcon from './ModernIcon'
-import { gsap, ScrollTrigger, prefersReducedMotion } from '@/lib/gsap'
-import { useParallax } from '@/hooks/useParallax'
 
 interface UltraPremiumCardProps {
   icon: string
@@ -14,296 +13,131 @@ interface UltraPremiumCardProps {
   delay?: number
 }
 
-function UltraPremiumCard({ icon, title, description, href, delay = 0 }: UltraPremiumCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
-  const arrowRef = useRef<HTMLSpanElement>(null)
-  const underlineRef = useRef<HTMLSpanElement>(null)
+export default function UltraPremiumCard({ icon, title, description, href, delay = 0 }: UltraPremiumCardProps) {
   const [isHovered, setIsHovered] = useState(false)
-
-  // Subtle parallax for icon (ultra-soft micro parallax)
-  const iconParallaxRef = useParallax({ speed: 10, scrub: 0.6 })
-
-  // GSAP Card Reveal Animation
-  useEffect(() => {
-    if (!cardRef.current) return
-
-    const card = cardRef.current
-    if (prefersReducedMotion()) return
-
-    gsap.set(card, {
-      opacity: 0,
-      y: 18,
-    })
-
-    const animation = gsap.to(card, {
-      opacity: 1,
-      y: 0,
-      duration: 0.9,
-      delay,
-      ease: 'cubic-bezier(0.22, 1, 0.36, 1)',
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-        once: true,
-      },
-    })
-
-    return () => {
-      animation.kill()
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.vars.trigger === card) {
-          st.kill()
-        }
-      })
-    }
-  }, [delay])
-
-  // Premium Hover Effects
-  useEffect(() => {
-    if (!cardRef.current) return
-
-    const card = cardRef.current
-    if (prefersReducedMotion()) return
-
-    const handleMouseEnter = () => {
-      setIsHovered(true)
-      gsap.to(card, {
-        y: -8,
-        scale: 1.015,
-        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(240, 90, 40, 0.08)',
-        duration: 0.25,
-        ease: 'power2.out',
-      })
-    }
-
-    const handleMouseLeave = () => {
-      setIsHovered(false)
-      gsap.to(card, {
-        y: 0,
-        scale: 1,
-        boxShadow: '0 20px 45px rgba(0, 0, 0, 0.07)',
-        duration: 0.25,
-        ease: 'power2.out',
-      })
-    }
-
-    card.addEventListener('mouseenter', handleMouseEnter)
-    card.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      card.removeEventListener('mouseenter', handleMouseEnter)
-      card.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
-
-  // CTA Micro-interactions
-  useEffect(() => {
-    if (!ctaRef.current || !arrowRef.current || !underlineRef.current) return
-
-    const cta = ctaRef.current
-    const arrow = arrowRef.current
-    const underline = underlineRef.current
-    if (prefersReducedMotion()) return
-
-    const handleMouseEnter = () => {
-      gsap.to(arrow, {
-        x: 3.5,
-        opacity: 1,
-        duration: 0.2,
-        ease: 'power2.out',
-      })
-      gsap.fromTo(
-        underline,
-        {
-          scaleX: 0.2,
-          opacity: 0,
-        },
-        {
-          scaleX: 1,
-          opacity: 1,
-          duration: 0.2,
-          ease: 'power2.out',
-          transformOrigin: 'left center',
-        }
-      )
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(arrow, {
-        x: 0,
-        opacity: 0.7,
-        duration: 0.2,
-        ease: 'power2.out',
-      })
-      gsap.to(underline, {
-        scaleX: 0,
-        opacity: 0,
-        duration: 0.2,
-        ease: 'power2.out',
-      })
-    }
-
-    cta.addEventListener('mouseenter', handleMouseEnter)
-    cta.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      cta.removeEventListener('mouseenter', handleMouseEnter)
-      cta.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
+  const handleHoverStart = useCallback(() => setIsHovered(true), [])
+  const handleHoverEnd = useCallback(() => setIsHovered(false), [])
 
   return (
-    <Link href={href} className="block h-full group">
-      <div
-        ref={cardRef}
-        className="relative h-full bg-white rounded-[36px] p-10 overflow-hidden"
-        style={{
-          border: '1px solid rgba(0, 0, 0, 0.08)',
-          boxShadow: '0 20px 45px rgba(0, 0, 0, 0.07)',
-          willChange: 'transform, box-shadow',
-        }}
-      >
-        {/* Multi-layer luxury design */}
-        
-        {/* Base layer - soft white with border */}
-        <div className="absolute inset-0 bg-white rounded-[36px]" />
-        
-        {/* Middle layer - subtle glass blur */}
-        <div 
-          className="absolute inset-0 backdrop-blur-[1px] rounded-[36px]"
-          style={{
-            background: 'rgba(255, 255, 255, 0.6)',
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
+      className="group h-full"
+    >
+      <Link href={href} className="block h-full">
+        <motion.div
+          className="relative h-full bg-white rounded-[32px] overflow-hidden border border-black/5 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06),0_16px_48px_rgba(0,0,0,0.04)]"
+          whileHover={{ 
+            y: -3,
+            boxShadow: '0 4px 12px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06)'
           }}
-        />
-        
-        {/* Top layer - ultra-light gradient */}
-        <div 
-          className="absolute inset-0 rounded-[36px] opacity-100"
-          style={{
-            background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0))',
-          }}
-        />
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        >
+          {/* Premium Top Strip - Icon Section */}
+          <div className="relative px-8 pt-12 pb-10 bg-gradient-to-br from-accent/4 via-accent/2 to-transparent backdrop-blur-[2px]">
+            {/* Subtle frosted glass effect */}
+            <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
+            <motion.div
+              className="relative flex items-center justify-center"
+              animate={isHovered ? { scale: [1, 1.05, 1] } : { scale: 1 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Soft blurred translucent circle/pill for icon */}
+              <div className="relative">
+                {/* Outer glow */}
+                <motion.div
+                  className="absolute inset-0 bg-accent/15 blur-2xl rounded-full"
+                  animate={isHovered ? { 
+                    scale: 1.2,
+                    opacity: 0.6
+                  } : { 
+                    scale: 1,
+                    opacity: 0.3
+                  }}
+                  transition={{ duration: 0.3 }}
+                />
+                {/* Icon container */}
+                <motion.div
+                  className="relative w-20 h-20 rounded-full bg-gradient-to-br from-accent/12 to-accent/6 border border-accent/20 flex items-center justify-center backdrop-blur-md shadow-[0_4px_12px_rgba(251,146,60,0.1)]"
+                  animate={isHovered ? { 
+                    boxShadow: '0 0 32px rgba(251, 146, 60, 0.25), 0 4px 16px rgba(251, 146, 60, 0.15)',
+                    borderColor: 'rgba(251, 146, 60, 0.3)',
+                    scale: 1.05
+                  } : {}}
+                  transition={{ duration: 0.25 }}
+                >
+                  <div className="w-10 h-10 text-accent/90">
+                    <ModernIcon name={icon} />
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
 
-        {/* Inner border highlight (Apple effect) */}
-        <div 
-          className="absolute inset-[1px] rounded-[35px] pointer-events-none"
-          style={{
-            border: '1px solid rgba(255, 255, 255, 0.4)',
-            boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.6)',
-          }}
-        />
+          {/* Content Section */}
+          <div className="px-8 pb-12 pt-8">
+            {/* Title */}
+            <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-dark tracking-[-0.02em] leading-tight">
+              {title}
+            </h3>
 
-        {/* Hover glow ring */}
-        <div 
-          className="absolute inset-0 rounded-[36px] pointer-events-none"
-          style={{
-            opacity: isHovered ? 1 : 0,
-            transition: 'opacity 0.3s ease',
-            boxShadow: '0 0 0 1px rgba(240, 90, 40, 0.08), 0 25px 50px rgba(0, 0, 0, 0.12)',
-          }}
-        />
-
-        {/* Content */}
-        <div className="relative z-10 h-full flex flex-col">
-          {/* Icon - Executive Minimalist */}
-          <div 
-            className="mb-6 flex items-center justify-center"
-          >
-            <div
-              ref={iconParallaxRef}
-              className="relative w-[50px] h-[50px] rounded-full flex items-center justify-center"
-              style={{
-                background: 'rgba(255, 255, 255, 0.8)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(240, 90, 40, 0.10)',
-                boxShadow: 'inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 2px 8px rgba(0, 0, 0, 0.04)',
+            {/* Description */}
+            <motion.p
+              className="text-text/70 leading-relaxed text-[15px] lg:text-base mb-8"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{
+                delay: delay + 0.1,
+                duration: 0.5,
+                ease: [0.22, 1, 0.36, 1]
               }}
             >
-              {/* Inner subtle glow */}
-              <div 
-                className="absolute inset-0 rounded-full z-0"
-                style={{
-                  background: 'radial-gradient(circle at 30% 30%, rgba(240, 90, 40, 0.08), transparent 70%)',
-                }}
-              />
-              {/* Outer ring */}
-              <div 
-                className="absolute -inset-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
-                style={{
-                  background: 'rgba(240, 90, 40, 0.10)',
-                  filter: 'blur(4px)',
-                }}
-              />
-              {/* Icon - Must be above all background layers */}
-              <div className="relative z-30 w-7 h-7 flex items-center justify-center" style={{ color: '#F05A28' }}>
-                <ModernIcon name={icon} strokeWidth={1.7} />
-              </div>
+              {description}
+            </motion.p>
+
+            {/* Premium CTA */}
+            <div
+              className="inline-flex items-center gap-2.5 text-accent font-medium text-sm tracking-wide group/cta"
+              data-cta-link
+            >
+              <span className="relative">
+                Learn More
+                <span
+                  className="absolute bottom-[-2px] left-0 right-0 h-[1.5px] bg-accent/40 origin-left scale-x-0"
+                  data-cta-underline
+                />
+              </span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+                data-cta-arrow
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                />
+              </svg>
             </div>
           </div>
 
-          {/* Typography - Luxury Scaling */}
-          <h3 
-            className="text-2xl font-bold text-dark"
-            style={{
-              letterSpacing: '-0.01em',
-              lineHeight: '1.2',
-              marginBottom: '16px', // 12-18px gap
-            }}
-          >
-            {title}
-          </h3>
-          
-          <p 
-            className="text-text/60 flex-grow"
-            style={{
-              lineHeight: '1.7',
-              fontSize: '15px',
-              marginBottom: '24px', // 24px gap
-            }}
-          >
-            {description}
-          </p>
-
-          {/* CTA - Boutique Interaction */}
-          <div 
-            ref={ctaRef}
-            className="inline-flex items-center gap-2.5 text-accent font-medium text-sm tracking-wide mt-auto"
-            style={{
-              letterSpacing: '0.01em',
-              marginTop: '30px', // 30px gap
-            }}
-          >
-            <span className="relative">
-              Learn More
-              <span
-                ref={underlineRef}
-                className="absolute bottom-[-3px] left-0 h-[1.5px] bg-accent/50 origin-left"
-                style={{
-                  width: '100%',
-                  transform: 'scaleX(0)',
-                  opacity: 0,
-                }}
-              />
-            </span>
-            <span 
-              ref={arrowRef}
-              className="inline-block text-accent/70"
-              style={{
-                opacity: 0.7,
-                transform: 'translateX(0)',
-              }}
-            >
-              →
-            </span>
-          </div>
-        </div>
-      </div>
-    </Link>
+          {/* Subtle bottom accent line on hover */}
+          <motion.div
+            className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-accent/0 via-accent/40 to-accent/0"
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileHover={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.div>
+      </Link>
+    </motion.div>
   )
 }
-
-export default memo(UltraPremiumCard)
-

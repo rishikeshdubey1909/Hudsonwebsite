@@ -23,6 +23,7 @@ interface IndustryPageProps {
     hero: {
       heading: string
       description: string
+      image?: string
     }
     sections: ReadonlyArray<IndustrySection>
     cta: {

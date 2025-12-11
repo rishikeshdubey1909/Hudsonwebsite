@@ -82,7 +82,10 @@ export default function Preloader() {
       animate={{ opacity: isLoading ? 1 : 0 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      style={{ pointerEvents: isLoading ? 'auto' : 'none' }}
+      style={{ 
+        pointerEvents: isLoading ? 'auto' : 'none',
+        display: isLoading ? 'flex' : 'none'
+      }}
     >
       {/* Animated Background Orbs */}
       <div className="absolute inset-0 overflow-hidden">

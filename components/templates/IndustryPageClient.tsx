@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import Breadcrumbs from '@/components/Breadcrumbs'
 
 interface IndustrySection {
@@ -18,6 +19,7 @@ interface IndustryPageClientProps {
     hero: {
       heading: string
       description: string
+      image?: string
     }
     sections: ReadonlyArray<IndustrySection>
     cta: {
@@ -32,7 +34,20 @@ export default function IndustryPageClient({ content }: IndustryPageClientProps)
     <main className="min-h-screen">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        {content.hero.image && (
+          <div className="absolute inset-0 z-0">
+            <Image
+              src={content.hero.image}
+              alt={content.hero.heading}
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+          </div>
+        )}
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
           <div className="mb-8">
             <Breadcrumbs items={[{ label: content.title, href: content.href }]} />
           </div>
@@ -42,10 +57,10 @@ export default function IndustryPageClient({ content }: IndustryPageClientProps)
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-              <span className="gradient-text">{content.hero.heading}</span>
+            <h1 className={`text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 ${content.hero.image ? 'text-white' : ''}`}>
+              <span className={content.hero.image ? '' : 'gradient-text'}>{content.hero.heading}</span>
             </h1>
-            <p className="text-xl text-text/70 max-w-3xl mx-auto leading-relaxed">
+            <p className={`text-xl max-w-3xl mx-auto leading-relaxed ${content.hero.image ? 'text-white/90' : 'text-text/70'}`}>
               {content.hero.description}
             </p>
           </motion.div>

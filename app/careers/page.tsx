@@ -20,3 +20,6 @@ export default function CareersPage() {
   redirect('http://hudsonmanpower.recruitee.com/')
 }
 
+
+
+
