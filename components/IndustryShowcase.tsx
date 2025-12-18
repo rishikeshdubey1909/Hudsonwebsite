@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
+import ModernIcon from './ui/ModernIcon'
 
 interface IndustryPanel {
   title: string
@@ -20,7 +21,7 @@ const industries: IndustryPanel[] = [
       'Rapid deployment for critical projects',
     ],
     href: '/oil-and-gas-staffing',
-    icon: '⚡',
+    icon: 'bolt',
   },
   {
     title: 'US IT Staffing & Technology',
@@ -30,7 +31,7 @@ const industries: IndustryPanel[] = [
       'Agile teams for enterprise projects',
     ],
     href: '/us-it-staffing',
-    icon: '💻',
+    icon: 'computer',
   },
   {
     title: 'Hospitality & F&B Workforce',
@@ -40,26 +41,26 @@ const industries: IndustryPanel[] = [
       'Multi-language support capabilities',
     ],
     href: '/hospitality-staffing',
-    icon: '🏨',
+    icon: 'building-office',
   },
 ]
 
 export default function IndustryShowcase() {
   return (
-    <section className="relative py-32 overflow-hidden bg-white" aria-labelledby="industries-heading">
+    <section className="relative py-12 lg:py-16 overflow-hidden bg-white" aria-labelledby="industries-heading">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-8"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 id="industries-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 id="industries-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3">
             <span className="gradient-text">Industry Expertise</span>
           </h2>
-          <p className="text-xl text-text/70 max-w-2xl mx-auto">
-            Specialized staffing solutions tailored to your industry's unique requirements and challenges.
+          <p className="text-lg text-text/70 max-w-2xl mx-auto">
+            Specialized execution across key sectors
           </p>
         </motion.div>
 
@@ -87,7 +88,7 @@ function IndustryCard({ industry, index }: { industry: IndustryPanel; index: num
       className="group h-full"
     >
       <motion.div
-        className="relative glass rounded-3xl p-8 border border-white/50 shadow-soft h-full overflow-hidden"
+        className="relative glass rounded-3xl p-6 border border-white/50 shadow-soft h-full overflow-hidden"
         whileHover={{ 
           scale: 1.02,
           y: -8,
@@ -110,18 +111,21 @@ function IndustryCard({ industry, index }: { industry: IndustryPanel; index: num
 
         <div className="relative z-10">
           <motion.div
-            className="text-6xl mb-6"
+            className="mb-4"
             animate={{
-              scale: isHovered ? [1, 1.2, 1] : 1,
-              rotate: isHovered ? [0, 15, -15, 0] : 0,
+              scale: isHovered ? [1, 1.1, 1] : 1,
             }}
             transition={{ duration: 0.5 }}
           >
-            {industry.icon}
+            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/10 to-primary/5 flex items-center justify-center border border-accent/10 group-hover:border-accent/20 transition-colors">
+              <div className="w-7 h-7 text-accent">
+                <ModernIcon name={industry.icon} strokeWidth={1.5} />
+              </div>
+            </div>
           </motion.div>
 
           <motion.h3
-            className="text-2xl font-bold text-dark mb-6"
+            className="text-xl font-bold text-dark mb-4"
             animate={{
               color: isHovered ? '#F05A28' : '#000000',
             }}
@@ -130,7 +134,7 @@ function IndustryCard({ industry, index }: { industry: IndustryPanel; index: num
             {industry.title}
           </motion.h3>
 
-          <ul className="space-y-4 mb-8">
+          <ul className="space-y-3 mb-6">
             {industry.bullets.map((bullet, bulletIndex) => (
               <motion.li
                 key={bulletIndex}

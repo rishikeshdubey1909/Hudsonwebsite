@@ -19,9 +19,9 @@ export default function Footer() {
         }} />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-20 lg:py-24">
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 lg:py-16">
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
           {/* Brand Column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -30,21 +30,21 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-1"
           >
-            <div className="mb-6">
+            <div className="mb-4">
               {!logoError ? (
                 <motion.img
                   src="/images/hudson-logo.png"
                   alt="Hudson Information Technology and Manpower Services"
-                  className="h-16 w-auto object-contain"
+                  className="h-14 w-auto object-contain"
                   onError={() => setLogoError(true)}
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 />
               ) : (
-                <h2 className="text-2xl font-heading font-bold text-white">Hudson</h2>
+                <h2 className="text-xl font-heading font-bold text-white">Hudson</h2>
               )}
             </div>
-            <p className="text-white/70 mb-6 leading-relaxed text-sm lg:text-base max-w-xs">
+            <p className="text-white/70 mb-4 leading-relaxed text-sm max-w-xs">
               {FOOTER.description}
             </p>
             <div className="flex items-center gap-3">
@@ -72,12 +72,12 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-              className="space-y-4"
+              className="space-y-3"
             >
-              <h3 className="font-heading font-semibold text-white text-base lg:text-lg mb-6 tracking-tight">
+              <h3 className="font-heading font-semibold text-white text-base mb-4 tracking-tight">
                 {category}
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-2">
                 {links.map((link, index) => (
                   <li key={`${category}-${link.href}-${index}`}>
                     <Link
@@ -108,14 +108,14 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="border-t border-white/10 pt-12 pb-8"
+          className="border-t border-white/10 pt-8 pb-6"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-            <div className="space-y-3">
-              <strong className="text-white block mb-4 text-sm font-semibold tracking-wide uppercase text-white/90">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="space-y-2">
+              <strong className="text-white block mb-3 text-sm font-semibold tracking-wide uppercase text-white/90">
                 Email
               </strong>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <a
                   href={`mailto:${BRAND.email}`}
                   className="block text-white/70 hover:text-accent transition-all duration-300 text-sm lg:text-base group"
@@ -147,11 +147,11 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="space-y-3">
-              <strong className="text-white block mb-4 text-sm font-semibold tracking-wide uppercase text-white/90">
+            <div className="space-y-2">
+              <strong className="text-white block mb-3 text-sm font-semibold tracking-wide uppercase text-white/90">
                 Phone
               </strong>
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <a
                   href={`tel:${BRAND.phone.usa.replace(/\s/g, '')}`}
                   className="block text-white/70 hover:text-accent transition-all duration-300 text-sm lg:text-base group"
@@ -197,22 +197,22 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="space-y-3">
-              <strong className="text-white block mb-4 text-sm font-semibold tracking-wide uppercase text-white/90">
+            <div className="space-y-2">
+              <strong className="text-white block mb-3 text-sm font-semibold tracking-wide uppercase text-white/90">
                 USA Office
               </strong>
-              <address className="not-italic text-white/70 text-sm lg:text-base leading-relaxed">
+              <address className="not-italic text-white/70 text-sm leading-relaxed">
                 {BRAND.offices.usa.street}<br />
                 {BRAND.offices.usa.city}, {BRAND.offices.usa.state} {BRAND.offices.usa.zip}<br />
                 {BRAND.offices.usa.country}
               </address>
             </div>
 
-            <div className="space-y-3">
-              <strong className="text-white block mb-4 text-sm font-semibold tracking-wide uppercase text-white/90">
+            <div className="space-y-2">
+              <strong className="text-white block mb-3 text-sm font-semibold tracking-wide uppercase text-white/90">
                 India Office
               </strong>
-              <address className="not-italic text-white/70 text-sm lg:text-base leading-relaxed">
+              <address className="not-italic text-white/70 text-sm leading-relaxed">
                 {BRAND.offices.india.street}<br />
                 {BRAND.offices.india.area}, {BRAND.offices.india.city} {BRAND.offices.india.zip}<br />
                 {BRAND.offices.india.country}
@@ -229,14 +229,22 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="border-t border-white/10 pt-8 mt-8"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/60">
-            <p className="text-center sm:text-left">
-              &copy; {currentYear} {BRAND.name}. All rights reserved.
-            </p>
-            <div className="flex items-center gap-1 text-xs text-white/50">
-              <span>Built with</span>
-              <span className="text-accent">♥</span>
-              <span>for global workforce solutions</span>
+          <div className="flex flex-col items-center gap-4 text-center">
+            {/* Brand Message */}
+            <div className="space-y-1">
+              <h3 className="text-base font-semibold text-white">
+                Hudson Information Technology & Manpower Services
+              </h3>
+              <p className="text-white/60 text-xs max-w-xl mx-auto">
+                Delivering workforce solutions across industries worldwide
+              </p>
+            </div>
+
+            {/* Copyright */}
+            <div className="pt-4 border-t border-white/10 w-full">
+              <p className="text-xs text-white/60">
+                &copy; {currentYear} {BRAND.name}. All rights reserved.
+              </p>
             </div>
           </div>
         </motion.div>

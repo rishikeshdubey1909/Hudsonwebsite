@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import { useParallax } from '@/hooks/useParallax'
 
 const softwareServices = [
   {
@@ -171,33 +172,68 @@ const keyFeatures = [
 
 export default function SoftwareSolutionsPageClient() {
   const [hoveredService, setHoveredService] = useState<string | null>(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const rafRef = useRef<number | null>(null)
+
+  // Parallax for background orbs (matching Home Hero)
+  const orb1Parallax = useParallax({ speed: 20, scrub: 0.6 })
+  const orb2Parallax = useParallax({ speed: -15, scrub: 0.5 })
+
+  // Mouse tracking for cursor follow effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+      rafRef.current = requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY })
+      })
+    }
+    window.addEventListener('mousemove', handleMouseMove, { passive: true })
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove)
+      if (rafRef.current) {
+        cancelAnimationFrame(rafRef.current)
+      }
+    }
+  }, [])
 
   return (
     <main className="min-h-screen bg-white overflow-hidden">
       {/* Hero Section - Creative Split Design */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Animated Background Layers */}
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50" />
-          <motion.div
-            className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              x: [0, 50, 0],
-              y: [0, -50, 0],
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-400/20 to-pink-400/20 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.3, 1],
-              x: [0, -30, 0],
-              y: [0, 30, 0],
-            }}
-            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
+        {/* Premium Soft Gradient Background - Matching Home Hero */}
+        <div className="absolute inset-0 bg-gradient-to-br from-light via-white to-secondary/30 z-0" />
+        
+        {/* Animated Gradient Orbs with Parallax - Matching Home Hero */}
+        <div
+          ref={orb1Parallax}
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/15 to-primary/8 rounded-full blur-3xl opacity-60 z-0"
+        />
+        <div
+          ref={orb2Parallax}
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/15 to-accent/8 rounded-full blur-3xl opacity-60 z-0"
+        />
+
+        {/* Interactive Cursor Follow Effect - Matching Home Hero */}
+        <motion.div
+          className="absolute w-96 h-96 bg-gradient-to-r from-accent/8 to-primary/8 rounded-full blur-3xl pointer-events-none opacity-40 z-0"
+          animate={{
+            x: mousePosition.x - 192,
+            y: mousePosition.y - 192,
+          }}
+          transition={{ type: "spring", stiffness: 50, damping: 20 }}
+        />
+
+        {/* Subtle Grid Pattern - Matching Home Hero */}
+        <div 
+          className="absolute inset-0 opacity-[0.015] z-0" 
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+          }} 
+        />
 
         <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
@@ -214,33 +250,33 @@ export default function SoftwareSolutionsPageClient() {
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               >
-                <span className="px-6 py-2 rounded-full bg-white/80 backdrop-blur-md border-2 border-blue-200 text-blue-600 font-bold text-sm shadow-lg">
+                <span className="px-6 py-2 rounded-full bg-white/80 backdrop-blur-md border-2 border-accent/30 text-accent font-bold text-sm shadow-lg">
                   Enterprise Software Development
                 </span>
               </motion.div>
 
               <div className="space-y-6">
                 <h1 className="text-7xl sm:text-8xl lg:text-9xl font-black leading-[0.9]">
-                  <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
                     Software
                   </span>
-                  <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
                     Solutions
                   </span>
                 </h1>
                 
                 <motion.p
-                  className="text-2xl sm:text-3xl text-gray-700 leading-relaxed font-light max-w-xl"
+                  className="text-2xl sm:text-3xl text-text leading-relaxed font-light max-w-xl"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                 >
                   Transform your business with{' '}
-                  <span className="font-bold text-blue-600">custom software</span>
+                  <span className="font-bold text-accent">custom software</span>
                   ,{' '}
-                  <span className="font-bold text-purple-600">enterprise applications</span>
+                  <span className="font-bold text-primary">enterprise applications</span>
                   , and{' '}
-                  <span className="font-bold text-pink-600">digital transformation</span>
+                  <span className="font-bold text-accent">digital transformation</span>
                 </motion.p>
               </div>
 
@@ -252,11 +288,11 @@ export default function SoftwareSolutionsPageClient() {
               >
                 <Link
                   href="/contact"
-                  className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-2xl overflow-hidden shadow-2xl hover:shadow-blue-500/50 transition-all duration-300"
+                  className="group relative px-10 py-5 bg-gradient-to-r from-accent to-primary text-white font-bold rounded-2xl overflow-hidden shadow-2xl hover:shadow-accent/50 transition-all duration-300"
                 >
                   <span className="relative z-10">Get Started Today</span>
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"
+                    className="absolute inset-0 bg-gradient-to-r from-primary to-accent"
                     initial={{ x: '-100%' }}
                     whileHover={{ x: 0 }}
                     transition={{ duration: 0.3 }}
@@ -264,7 +300,7 @@ export default function SoftwareSolutionsPageClient() {
                 </Link>
                 <Link
                   href="/about"
-                  className="px-10 py-5 bg-white/90 backdrop-blur-md border-3 border-blue-200 text-blue-600 font-bold rounded-2xl hover:bg-blue-50 transition-all duration-300 shadow-lg"
+                  className="px-10 py-5 bg-white/90 backdrop-blur-md border-2 border-accent/30 text-accent font-bold rounded-2xl hover:bg-accent/10 transition-all duration-300 shadow-lg"
                 >
                   Learn More
                 </Link>
@@ -303,16 +339,16 @@ export default function SoftwareSolutionsPageClient() {
                     }}
                     whileHover={{ scale: 1.2, zIndex: 10 }}
                   >
-                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-2xl cursor-pointer`}>
+                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-2xl cursor-pointer border-2 border-accent/30">
                       <span className="text-4xl">{service.icon}</span>
                     </div>
                   </motion.div>
                 )
               })}
               
-              {/* Central Hub */}
+              {/* Central Hub - Hudson Colors */}
               <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 flex items-center justify-center shadow-2xl"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-accent via-primary to-accent flex items-center justify-center shadow-2xl border-4 border-accent/40"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
@@ -326,7 +362,7 @@ export default function SoftwareSolutionsPageClient() {
 
       {/* Core Capabilities - Creative Numbered List */}
       <section className="relative py-32 bg-white overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(59,130,246,0.03)_50%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(240,90,40,0.03)_50%,transparent_100%)]" />
         
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -337,11 +373,11 @@ export default function SoftwareSolutionsPageClient() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-4">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
                 Core
               </span>
               <br />
-              <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
                 Capabilities
               </span>
             </h2>
@@ -359,11 +395,11 @@ export default function SoftwareSolutionsPageClient() {
                 onHoverStart={() => setHoveredService(feature.title)}
                 onHoverEnd={() => setHoveredService(null)}
               >
-                <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 p-8 lg:p-12 rounded-3xl bg-gradient-to-r from-white via-gray-50/50 to-white border-2 border-transparent hover:border-blue-200 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 p-8 lg:p-12 rounded-3xl bg-gradient-to-r from-white via-secondary/50 to-white border-2 border-transparent hover:border-accent/30 hover:shadow-2xl transition-all duration-500 overflow-hidden">
                   {/* Large Number */}
                   <div className="flex-shrink-0">
                     <div className="relative">
-                      <span className="text-9xl sm:text-[12rem] font-black text-gray-100 group-hover:text-blue-100 transition-colors duration-500">
+                      <span className="text-9xl sm:text-[12rem] font-black text-secondary group-hover:text-accent/20 transition-colors duration-500">
                         {feature.number}
                       </span>
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl">
@@ -374,19 +410,19 @@ export default function SoftwareSolutionsPageClient() {
 
                   {/* Content */}
                   <div className="flex-1 space-y-4">
-                    <h3 className="text-4xl sm:text-5xl font-bold text-gray-900">
+                    <h3 className="text-4xl sm:text-5xl font-bold text-primary">
                       {feature.title}
                     </h3>
-                    <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
+                    <p className="text-xl text-text leading-relaxed max-w-2xl">
                       {feature.description}
                     </p>
                   </div>
 
-                  {/* Hover Gradient Overlay */}
+                  {/* Hover Gradient Overlay - Hudson Colors */}
                   <AnimatePresence>
                     {hoveredService === feature.title && (
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10"
+                        className="absolute inset-0 bg-gradient-to-r from-accent/10 via-primary/10 to-accent/10"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -403,8 +439,8 @@ export default function SoftwareSolutionsPageClient() {
       {/* Services - Creative Grid with Overlapping Elements */}
       <section className="relative py-32 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
@@ -416,11 +452,11 @@ export default function SoftwareSolutionsPageClient() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6">
-              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
                 Our Solutions
               </span>
             </h2>
-            <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-2xl text-text max-w-3xl mx-auto">
               A complete suite of software services tailored to your needs
             </p>
           </motion.div>
@@ -438,14 +474,14 @@ export default function SoftwareSolutionsPageClient() {
                 onHoverStart={() => setHoveredService(service.id)}
                 onHoverEnd={() => setHoveredService(null)}
               >
-                <div className="relative h-full bg-white rounded-3xl p-8 border-2 border-gray-200 hover:border-transparent overflow-hidden transition-all duration-500">
-                  {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                <div className="relative h-full bg-white rounded-3xl p-8 border-2 border-secondary hover:border-accent/30 overflow-hidden transition-all duration-500">
+                  {/* Gradient Background - Hudson Colors */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  {/* Icon - Large and Prominent */}
+                  {/* Icon - Large and Prominent - Hudson Colors */}
                   <div className="relative mb-6">
                     <motion.div
-                      className={`w-24 h-24 rounded-3xl bg-gradient-to-br ${service.gradient} flex items-center justify-center shadow-2xl`}
+                      className="w-24 h-24 rounded-3xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-2xl border-2 border-accent/30"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     >
@@ -455,10 +491,10 @@ export default function SoftwareSolutionsPageClient() {
 
                   {/* Content */}
                   <div className="relative z-10">
-                    <h3 className="text-3xl font-bold mb-3 text-gray-900 group-hover:text-white transition-colors duration-500">
+                    <h3 className="text-3xl font-bold mb-3 text-primary group-hover:text-white transition-colors duration-500">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 group-hover:text-white/90 mb-6 leading-relaxed transition-colors duration-500">
+                    <p className="text-text group-hover:text-white/90 mb-6 leading-relaxed transition-colors duration-500">
                       {service.description}
                     </p>
                     
@@ -466,21 +502,21 @@ export default function SoftwareSolutionsPageClient() {
                     <div className="space-y-2">
                       {service.services.slice(0, 3).map((item, idx) => (
                         <div key={idx} className="flex items-center gap-2 text-sm">
-                          <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.gradient} group-hover:bg-white transition-colors duration-500`} />
-                          <span className="text-gray-600 group-hover:text-white/90 transition-colors duration-500">{item}</span>
+                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-accent to-primary group-hover:bg-white transition-colors duration-500" />
+                          <span className="text-text group-hover:text-white/90 transition-colors duration-500">{item}</span>
                         </div>
                       ))}
                       {service.services.length > 3 && (
-                        <div className="text-sm text-gray-500 group-hover:text-white/80 transition-colors duration-500">
+                        <div className="text-sm text-text/60 group-hover:text-white/80 transition-colors duration-500">
                           +{service.services.length - 3} more services
                         </div>
                       )}
                     </div>
                   </div>
 
-                  {/* Decorative Elements */}
-                  <div className={`absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br ${service.gradient} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500`} />
-                  <div className={`absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-tr ${service.gradient} opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500`} />
+                  {/* Decorative Elements - Hudson Colors */}
+                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-accent to-primary opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500" />
+                  <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-tr from-accent to-primary opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500" />
                 </div>
               </motion.div>
             ))}
@@ -488,9 +524,9 @@ export default function SoftwareSolutionsPageClient() {
         </div>
       </section>
 
-      {/* CTA Section - Creative Split Design */}
+      {/* CTA Section - Creative Split Design - Hudson Colors */}
       <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600" />
+        <div className="absolute inset-0 bg-gradient-to-br from-accent via-primary to-accent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]" />
         
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
@@ -523,13 +559,13 @@ export default function SoftwareSolutionsPageClient() {
             >
               <Link
                 href="/contact"
-                className="block w-full px-10 py-6 bg-white text-blue-600 font-bold rounded-2xl text-center text-xl hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                className="block w-full px-10 py-6 bg-white text-accent font-bold rounded-2xl text-center text-xl hover:scale-105 hover:shadow-2xl transition-all duration-300"
               >
                 Get Started Today
               </Link>
               <Link
                 href="/about"
-                className="block w-full px-10 py-6 bg-transparent border-3 border-white text-white font-bold rounded-2xl text-center text-xl hover:bg-white/10 transition-all duration-300"
+                className="block w-full px-10 py-6 bg-transparent border-2 border-white text-white font-bold rounded-2xl text-center text-xl hover:bg-white/10 transition-all duration-300"
               >
                 Learn More
               </Link>

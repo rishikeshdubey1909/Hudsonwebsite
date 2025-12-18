@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Hero from '@/components/Hero'
-import SegmentCard from '@/components/SegmentCard'
-import WhyHudson from '@/components/WhyHudson'
+import StatsProof from '@/components/StatsProof'
+import SimplifiedSolutions from '@/components/SimplifiedSolutions'
+import OurMethodology from '@/components/OurMethodology'
+import WhyHudsonAuthority from '@/components/WhyHudsonAuthority'
 import IndustryShowcase from '@/components/IndustryShowcase'
+import MidPageCTA from '@/components/MidPageCTA'
 import Footer from '@/components/Footer'
 import SchemaInjector from '@/components/SchemaInjector'
-import SolutionsHeader from '@/components/SolutionsHeader'
 import { HOME, BRAND } from '@/constants/content'
 
 export const metadata: Metadata = {
@@ -112,67 +114,26 @@ export default function HomePage() {
       <SchemaInjector schema={serviceSchema} />
       <Navbar />
       <main className="relative">
+        {/* Hero Section - LOCKED, DO NOT MODIFY */}
         <Hero />
         
-        {/* Our Solutions Section - Ultra Premium */}
-        <section 
-          className="relative py-28 lg:py-36 overflow-hidden bg-white" 
-          aria-labelledby="services-heading"
-          data-section-reveal
-        >
-          {/* Premium Background Texture */}
-          {/* Ultra-light noise/grain layer */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E")`,
-              opacity: 0.03,
-            }}
-          />
-          
-          {/* Very subtle radial gradient behind cards */}
-          <div 
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(240, 90, 40, 0.06), transparent 70%)',
-            }}
-          />
-          
-          {/* Subtle dot pattern overlay */}
-          <div 
-            className="absolute inset-0 opacity-[0.015] pointer-events-none"
-            style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-              backgroundSize: '50px 50px',
-            }} 
-          />
-          
-          <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
-            <div data-reveal-child>
-              <SolutionsHeader
-                id="services-heading"
-                title="Our Solutions"
-                description="Comprehensive workforce solutions tailored to your industry needs"
-              />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 mt-16" data-card-container>
-              {HOME.segmentCards.map((card, index) => (
-                <div key={card.href} data-card-reveal>
-                  <SegmentCard 
-                    icon={card.icon} 
-                    title={card.card.title} 
-                    description={card.card.description} 
-                    href={card.href} 
-                    delay={index * 0.08} 
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* Stats Proof - ONE stats section with counters */}
+        <StatsProof />
 
-        <WhyHudson />
+        {/* Our Solutions - High-level service summaries */}
+        <SimplifiedSolutions />
+
+        {/* Our Methodology - Hudson's process (5 steps) */}
+        <OurMethodology />
+
+        {/* Why Choose Hudson - 3 key differentiators (no stats) */}
+        <WhyHudsonAuthority />
+
+        {/* Industry Expertise - Execution details only */}
         <IndustryShowcase />
+
+        {/* Mid-Page CTA Band */}
+        <MidPageCTA />
       </main>
       <Footer />
     </>

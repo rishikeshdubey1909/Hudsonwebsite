@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        '18': '4.5rem', // 72px for enterprise section padding
+      },
       colors: {
         primary: '#000000',
         accent: '#F05A28',
