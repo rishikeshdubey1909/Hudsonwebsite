@@ -53,6 +53,17 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
   },
+  icons: {
+    icon: [
+      { url: '/images/hudson-logo.png', type: 'image/png' },
+      { url: '/images/hudson-logo.png', sizes: '32x32', type: 'image/png' },
+      { url: '/images/hudson-logo.png', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/images/hudson-logo.png', sizes: '180x180', type: 'image/png' },
+    ],
+    shortcut: '/images/hudson-logo.png',
+  },
 }
 
 export default function RootLayout({
@@ -63,6 +74,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        <link rel="icon" href="/images/hudson-logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/images/hudson-logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/hudson-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
