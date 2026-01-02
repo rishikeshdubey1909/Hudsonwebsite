@@ -26,24 +26,15 @@ function Hero() {
     const heading = heroContentRef.current.querySelector('[data-hero-heading]')
     const description = heroContentRef.current.querySelector('[data-hero-description]')
     const cta = heroContentRef.current.querySelector('[data-hero-cta]')
-    const stats = heroContentRef.current.querySelectorAll('[data-hero-stat]')
 
     // Set initial states
     gsap.set([badge, heading, description, cta], { opacity: 0, y: 30 })
-    gsap.set(stats, { opacity: 0, scale: 0.8, y: 20 })
 
     // Animate in sequence
     tl.to(badge, { opacity: 1, y: 0, duration: 0.6 }, 0.2)
       .to(heading, { opacity: 1, y: 0, duration: 0.8 }, 0.3)
       .to(description, { opacity: 1, y: 0, duration: 0.8 }, 0.5)
       .to(cta, { opacity: 1, y: 0, duration: 0.8 }, 0.7)
-      .to(stats, { 
-        opacity: 1, 
-        scale: 1, 
-        y: 0, 
-        duration: 0.6, 
-        stagger: 0.1 
-      }, 0.9)
   }, [])
 
   useEffect(() => {
@@ -66,22 +57,32 @@ function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Premium Soft Gradient Background */}
+      {/* Premium Soft Gradient Background with Hudson Colors */}
       <div className="absolute inset-0 bg-gradient-to-br from-light via-white to-secondary/30" />
       
-      {/* Animated Gradient Orbs with Parallax */}
+      {/* Animated Gradient Orbs with Parallax - Hudson Colors */}
       <div
         ref={orb1Parallax}
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/15 to-primary/8 rounded-full blur-3xl opacity-60"
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/20 to-primary/10 rounded-full blur-3xl opacity-70"
       />
       <div
         ref={orb2Parallax}
-        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/15 to-accent/8 rounded-full blur-3xl opacity-60"
+        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 to-accent/10 rounded-full blur-3xl opacity-70"
       />
 
-      {/* Interactive Cursor Follow Effect */}
+      {/* Additional Hudson Color Accent Orbs */}
       <motion.div
-        className="absolute w-96 h-96 bg-gradient-to-r from-accent/8 to-primary/8 rounded-full blur-3xl pointer-events-none opacity-40"
+        className="absolute top-1/2 right-1/3 w-72 h-72 bg-gradient-to-br from-accent/15 to-primary/15 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.4, 0.6, 0.4],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Interactive Cursor Follow Effect - Hudson Colors */}
+      <motion.div
+        className="absolute w-96 h-96 bg-gradient-to-r from-accent/12 to-primary/12 rounded-full blur-3xl pointer-events-none opacity-50"
         animate={{
           x: mousePosition.x - 192,
           y: mousePosition.y - 192,
@@ -89,12 +90,12 @@ function Hero() {
         transition={{ type: "spring", stiffness: 50, damping: 20 }}
       />
 
-      {/* Subtle Grid Pattern */}
+      {/* Subtle Grid Pattern with Hudson Colors */}
       <div 
-        className="absolute inset-0 opacity-[0.015]" 
+        className="absolute inset-0 opacity-[0.02]" 
         style={{
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(240, 90, 40, 0.1) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }} 
       />
@@ -103,47 +104,18 @@ function Hero() {
         ref={heroContentRef}
         className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12"
       >
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center min-h-[85vh] lg:min-h-[90vh] py-12 lg:py-20">
-          {/* Left Content Area */}
-          <div className="lg:col-span-7 space-y-6 lg:space-y-8">
-            {/* Badge - Enhanced Creative Design */}
-            <div data-hero-badge>
-              <motion.div 
-                className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-white/90 via-white/80 to-white/90 backdrop-blur-md border-2 border-accent/20 shadow-lg hover:shadow-xl transition-all duration-300 group/badge"
-                whileHover={{ scale: 1.05, borderColor: 'rgba(240, 90, 40, 0.4)' }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {/* Animated Pulse Dot */}
-                <motion.div
-                  className="relative"
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <span className="absolute inset-0 w-2.5 h-2.5 bg-accent/30 rounded-full blur-sm" />
-                  <span className="relative w-2.5 h-2.5 bg-gradient-to-br from-accent to-accent/80 rounded-full shadow-lg shadow-accent/50" />
-                </motion.div>
-                
-                {/* Badge Text with Gradient */}
-                <span className="text-xs font-bold bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent tracking-wider uppercase relative">
-                  Solutions
-                  <motion.span
-                    className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-gradient-to-r from-accent to-primary rounded-full opacity-0 group-hover/badge:opacity-100 transition-opacity"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </span>
-                
-                {/* Decorative Accent */}
-                <motion.div
-                  className="absolute -right-1 -top-1 w-3 h-3 bg-gradient-to-br from-accent/40 to-primary/40 rounded-full blur-sm opacity-0 group-hover/badge:opacity-100 transition-opacity"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                />
-              </motion.div>
+        <div className="flex flex-col items-center justify-center min-h-[85vh] lg:min-h-[90vh] py-12 lg:py-20">
+          {/* Centered Content Area */}
+          <div className="w-full max-w-4xl space-y-6 lg:space-y-8 text-center">
+            {/* Badge - Centered */}
+            <div data-hero-badge className="flex justify-center">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-accent/15 shadow-sm">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                <span className="text-xs font-semibold text-accent tracking-wide uppercase">Solutions</span>
+              </div>
             </div>
 
-            {/* Main Heading - Keep exactly as is */}
+            {/* Main Heading - Centered */}
             <h1 
               data-hero-heading 
               className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight"
@@ -153,16 +125,16 @@ function Hero() {
               <span className="block text-dark">{HOME.hero.heading.line3}</span>
             </h1>
 
-            {/* Description */}
+            {/* Description - Centered */}
             <p 
               data-hero-description 
-              className="text-lg sm:text-xl lg:text-2xl text-text/70 leading-relaxed max-w-2xl"
+              className="text-lg sm:text-xl lg:text-2xl text-text/70 leading-relaxed max-w-2xl mx-auto"
             >
               {HOME.hero.description}
             </p>
 
-            {/* CTA Buttons */}
-            <div data-hero-cta className="flex flex-col sm:flex-row gap-4 pt-2">
+            {/* CTA Buttons - Centered */}
+            <div data-hero-cta className="flex flex-col sm:flex-row gap-4 pt-2 justify-center">
               {/* Primary Button - Bold Gradient */}
               <Link href={HOME.hero.cta.primary.href} className="group relative inline-block">
                 <motion.button
@@ -214,88 +186,6 @@ function Hero() {
                   />
                 </motion.button>
               </Link>
-            </div>
-          </div>
-
-          {/* Right Stats Area - Enhanced Creative Design */}
-          <div className="lg:col-span-5">
-            <div className="grid grid-cols-2 gap-4 lg:gap-5">
-              {HOME.stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  data-hero-stat
-                  className="group relative"
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {/* Enhanced Card with Creative Elements */}
-                  <div className="relative bg-white/90 backdrop-blur-md rounded-2xl p-5 lg:p-6 border-2 border-white/80 shadow-lg hover:shadow-2xl transition-all duration-300 h-full flex flex-col overflow-hidden">
-                    {/* Animated Background Gradient */}
-                    <motion.div 
-                      className="absolute inset-0 bg-gradient-to-br from-accent/0 via-primary/0 to-accent/0 group-hover:from-accent/8 group-hover:via-primary/5 group-hover:to-accent/8 transition-all duration-500 pointer-events-none rounded-2xl" 
-                    />
-                    
-                    {/* Decorative Corner Accent */}
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-primary/10 to-transparent rounded-tr-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    {/* Content */}
-                    <div className="relative z-10">
-                      {/* Number with Enhanced Animation */}
-                      <motion.div
-                        className="text-3xl lg:text-4xl font-bold gradient-text mb-2 relative inline-block"
-                        animate={{ backgroundPosition: ['0%', '100%', '0%'] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                      >
-                        {stat.value}
-                        {/* Glow Effect */}
-                        <motion.span
-                          className="absolute inset-0 text-3xl lg:text-4xl font-bold gradient-text blur-xl opacity-0 group-hover:opacity-30 transition-opacity -z-10"
-                          aria-hidden="true"
-                        >
-                          {stat.value}
-                        </motion.span>
-                      </motion.div>
-                      
-                      {/* Label with Icon-like Decoration */}
-                      <div className="flex items-center gap-2 mb-1">
-                        <motion.div
-                          className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-accent to-primary"
-                          animate={{ 
-                            scale: [1, 1.3, 1],
-                            opacity: [0.6, 1, 0.6]
-                          }}
-                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                        />
-                        <div className="text-sm font-semibold text-dark group-hover:text-accent transition-colors">
-                          {stat.label}
-                        </div>
-                      </div>
-                      
-                      {/* Sublabel */}
-                      <div className="text-xs text-text/60 group-hover:text-text/80 transition-colors">
-                        {stat.sublabel}
-                      </div>
-                    </div>
-                    
-                    {/* Bottom Accent Line */}
-                    <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={{ scaleX: 0 }}
-                      whileHover={{ scaleX: 1 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    
-                    {/* Shine Effect on Hover */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 rounded-2xl"
-                      initial={{ x: '-100%' }}
-                      whileHover={{ x: '100%' }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  </div>
-                </motion.div>
-              ))}
             </div>
           </div>
         </div>

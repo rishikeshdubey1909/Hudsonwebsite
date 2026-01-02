@@ -3,13 +3,14 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
-import ModernIcon from './ui/ModernIcon'
+import LogoIcon from './ui/LogoIcon'
 
 interface IndustryPanel {
   title: string
   bullets: string[]
   href: string
-  icon: string
+  icon?: string
+  logo?: string
 }
 
 const industries: IndustryPanel[] = [
@@ -22,6 +23,7 @@ const industries: IndustryPanel[] = [
     ],
     href: '/oil-and-gas-staffing',
     icon: 'bolt',
+    logo: '/images/logos/oil-gas.svg', // Add logo image here when available
   },
   {
     title: 'US IT Staffing & Technology',
@@ -31,7 +33,8 @@ const industries: IndustryPanel[] = [
       'Agile teams for enterprise projects',
     ],
     href: '/us-it-staffing',
-    icon: 'computer',
+    icon: 'cpu',
+    logo: '/images/logos/it-staffing.svg', // Add logo image here when available
   },
   {
     title: 'Hospitality & F&B Workforce',
@@ -41,26 +44,27 @@ const industries: IndustryPanel[] = [
       'Multi-language support capabilities',
     ],
     href: '/hospitality-staffing',
-    icon: 'building-office',
+    icon: 'star',
+    logo: '/images/logos/hospitality.svg', // Add logo image here when available
   },
 ]
 
 export default function IndustryShowcase() {
   return (
-    <section className="relative py-12 lg:py-16 overflow-hidden bg-white" aria-labelledby="industries-heading">
+    <section className="relative py-32 overflow-hidden bg-white" aria-labelledby="industries-heading">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div
-          className="text-center mb-8"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 id="industries-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-3">
+          <h2 id="industries-heading" className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
             <span className="gradient-text">Industry Expertise</span>
           </h2>
-          <p className="text-lg text-text/70 max-w-2xl mx-auto">
-            Specialized execution across key sectors
+          <p className="text-xl text-text/70 max-w-2xl mx-auto">
+            Specialized staffing solutions tailored to your industry's unique requirements and challenges.
           </p>
         </motion.div>
 
@@ -88,7 +92,7 @@ function IndustryCard({ industry, index }: { industry: IndustryPanel; index: num
       className="group h-full"
     >
       <motion.div
-        className="relative glass rounded-3xl p-6 border border-white/50 shadow-soft h-full overflow-hidden"
+        className="relative glass rounded-3xl p-8 border border-white/50 shadow-soft h-full overflow-hidden"
         whileHover={{ 
           scale: 1.02,
           y: -8,
@@ -111,21 +115,24 @@ function IndustryCard({ industry, index }: { industry: IndustryPanel; index: num
 
         <div className="relative z-10">
           <motion.div
-            className="mb-4"
+            className="mb-6 flex items-center justify-center"
             animate={{
-              scale: isHovered ? [1, 1.1, 1] : 1,
+              scale: isHovered ? [1, 1.2, 1] : 1,
+              rotate: isHovered ? [0, 15, -15, 0] : 0,
             }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-accent/10 to-primary/5 flex items-center justify-center border border-accent/10 group-hover:border-accent/20 transition-colors">
-              <div className="w-7 h-7 text-accent">
-                <ModernIcon name={industry.icon} strokeWidth={1.5} />
+            {industry.logo ? (
+              <div className="w-16 h-16">
+                <LogoIcon src={industry.logo} icon={industry.icon} size={64} alt={industry.title} />
               </div>
-            </div>
+            ) : industry.icon ? (
+              <div className="text-6xl">{industry.icon}</div>
+            ) : null}
           </motion.div>
 
           <motion.h3
-            className="text-xl font-bold text-dark mb-4"
+            className="text-2xl font-bold text-dark mb-6"
             animate={{
               color: isHovered ? '#F05A28' : '#000000',
             }}
@@ -134,7 +141,7 @@ function IndustryCard({ industry, index }: { industry: IndustryPanel; index: num
             {industry.title}
           </motion.h3>
 
-          <ul className="space-y-3 mb-6">
+          <ul className="space-y-4 mb-8">
             {industry.bullets.map((bullet, bulletIndex) => (
               <motion.li
                 key={bulletIndex}

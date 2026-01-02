@@ -3,17 +3,18 @@
 import { motion } from 'framer-motion'
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
-import ModernIcon from './ModernIcon'
+import LogoIcon from './LogoIcon'
 
 interface UltraPremiumCardProps {
-  icon: string
+  icon?: string
+  logo?: string
   title: string
   description: string
   href: string
   delay?: number
 }
 
-export default function UltraPremiumCard({ icon, title, description, href, delay = 0 }: UltraPremiumCardProps) {
+export default function UltraPremiumCard({ icon, logo, title, description, href, delay = 0 }: UltraPremiumCardProps) {
   const [isHovered, setIsHovered] = useState(false)
   const handleHoverStart = useCallback(() => setIsHovered(true), [])
   const handleHoverEnd = useCallback(() => setIsHovered(false), [])
@@ -30,7 +31,7 @@ export default function UltraPremiumCard({ icon, title, description, href, delay
     >
       <Link href={href} className="block h-full">
         <motion.div
-          className="relative h-full bg-white rounded-[32px] overflow-hidden border border-black/5 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06),0_16px_48px_rgba(0,0,0,0.04)]"
+          className="relative h-full bg-white rounded-2xl overflow-hidden border border-black/5 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_8px_24px_rgba(0,0,0,0.06),0_16px_48px_rgba(0,0,0,0.04)]"
           whileHover={{ 
             y: -3,
             boxShadow: '0 4px 12px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.08), 0 24px 64px rgba(0,0,0,0.06)'
@@ -38,7 +39,7 @@ export default function UltraPremiumCard({ icon, title, description, href, delay
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
           {/* Premium Top Strip - Icon Section */}
-          <div className="relative px-8 pt-12 pb-10 bg-gradient-to-br from-accent/4 via-accent/2 to-transparent backdrop-blur-[2px]">
+          <div className="relative px-6 pt-8 pb-6 bg-gradient-to-br from-accent/4 via-accent/2 to-transparent backdrop-blur-[2px]">
             {/* Subtle frosted glass effect */}
             <div className="absolute inset-0 bg-white/30 backdrop-blur-sm" />
             <motion.div
@@ -62,7 +63,7 @@ export default function UltraPremiumCard({ icon, title, description, href, delay
                 />
                 {/* Icon container */}
                 <motion.div
-                  className="relative w-20 h-20 rounded-full bg-gradient-to-br from-accent/12 to-accent/6 border border-accent/20 flex items-center justify-center backdrop-blur-md shadow-[0_4px_12px_rgba(251,146,60,0.1)]"
+                  className="relative w-16 h-16 rounded-full bg-gradient-to-br from-accent/12 to-accent/6 border border-accent/20 flex items-center justify-center backdrop-blur-md shadow-[0_4px_12px_rgba(251,146,60,0.1)]"
                   animate={isHovered ? { 
                     boxShadow: '0 0 32px rgba(251, 146, 60, 0.25), 0 4px 16px rgba(251, 146, 60, 0.15)',
                     borderColor: 'rgba(251, 146, 60, 0.3)',
@@ -70,8 +71,8 @@ export default function UltraPremiumCard({ icon, title, description, href, delay
                   } : {}}
                   transition={{ duration: 0.25 }}
                 >
-                  <div className="w-10 h-10 text-accent/90">
-                    <ModernIcon name={icon} />
+                  <div className="w-8 h-8 text-accent/90">
+                    <LogoIcon src={logo} icon={icon} size={32} alt={title} />
                   </div>
                 </motion.div>
               </div>
@@ -79,15 +80,15 @@ export default function UltraPremiumCard({ icon, title, description, href, delay
           </div>
 
           {/* Content Section */}
-          <div className="px-8 pb-12 pt-8">
+          <div className="px-6 pb-8 pt-6">
             {/* Title */}
-            <h3 className="text-2xl lg:text-3xl font-bold mb-6 text-dark tracking-[-0.02em] leading-tight">
+            <h3 className="text-xl lg:text-2xl font-bold mb-4 text-dark tracking-[-0.02em] leading-tight">
               {title}
             </h3>
 
             {/* Description */}
             <motion.p
-              className="text-text/70 leading-relaxed text-[15px] lg:text-base mb-8"
+              className="text-text/70 leading-relaxed text-sm lg:text-[15px] mb-6"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}

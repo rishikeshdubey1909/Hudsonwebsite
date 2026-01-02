@@ -43,7 +43,7 @@ export default function Navbar() {
             >
               {!logoError ? (
                 <img
-                  src="/images/hudson-logo.png"
+                  src="/images/hudson-logo.jpeg"
                   alt="Hudson Information Technology and Manpower Services"
                   className="h-12 w-auto object-contain"
                   onError={() => setLogoError(true)}
@@ -88,8 +88,21 @@ export default function Navbar() {
             </motion.div>
           </div>
 
-          {/* CTA Button - Premium */}
-          <div className="hidden lg:block z-10">
+          {/* CTA Buttons - Premium */}
+          <div className="hidden lg:flex items-center gap-3 z-10">
+            <a 
+              href="mailto:tp.numbr@hudsonmanpower.recruitee.com?subject=CV Submission&body=Dear Hudson Team,%0D%0A%0D%0APlease find my CV attached.%0D%0A%0D%0AThank you."
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <motion.div
+                className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl font-semibold text-sm shadow-glow"
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Submit CV
+              </motion.div>
+            </a>
             <Link href="/contact">
               <motion.div
                 className="px-6 py-2.5 bg-gradient-to-r from-accent to-accent/90 text-white rounded-xl font-semibold text-sm shadow-glow"
@@ -173,8 +186,17 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navLinks.length * 0.1, duration: 0.3 }}
-                  className="pt-4"
+                  className="pt-4 space-y-3"
                 >
+                  <a
+                    href="mailto:tp.numbr@hudsonmanpower.recruitee.com?subject=CV Submission&body=Dear Hudson Team,%0D%0A%0D%0APlease find my CV attached.%0D%0A%0D%0AThank you."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-xl font-semibold text-center shadow-glow"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Submit CV
+                  </a>
                   <Link
                     href="/contact"
                     className="block bg-gradient-to-r from-accent to-accent/90 text-white px-6 py-3 rounded-xl font-semibold text-center shadow-glow"

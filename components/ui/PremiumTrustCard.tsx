@@ -1,18 +1,19 @@
 'use client'
 
 import { useEffect, useRef, useState, memo } from 'react'
-import ModernIcon from './ModernIcon'
+import LogoIcon from './LogoIcon'
 import { gsap, ScrollTrigger, prefersReducedMotion } from '@/lib/gsap'
 
 interface PremiumTrustCardProps {
-  icon: string
+  icon?: string
+  logo?: string
   value: string
   label: string
   description: string
   delay?: number
 }
 
-function PremiumTrustCard({ icon, value, label, description, delay = 0 }: PremiumTrustCardProps) {
+function PremiumTrustCard({ icon, logo, value, label, description, delay = 0 }: PremiumTrustCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const iconRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
@@ -149,7 +150,7 @@ function PremiumTrustCard({ icon, value, label, description, delay = 0 }: Premiu
             />
             {/* Icon */}
             <div className="relative z-10 w-7 h-7" style={{ color: '#F05A28' }}>
-              <ModernIcon name={icon} strokeWidth={1.7} />
+              <LogoIcon src={logo} icon={icon} size={28} alt={label} />
             </div>
           </div>
         </div>

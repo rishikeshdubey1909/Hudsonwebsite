@@ -26,7 +26,7 @@ function WhyHudson() {
           <SolutionsHeader
             id="why-hudson-heading"
             title="Why Choose Hudson"
-            description="Trusted by leading companies worldwide for reliable workforce solutions and exceptional service delivery."
+            description="Built for Scale. Trusted for Execution."
           />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mt-16">
@@ -34,6 +34,7 @@ function WhyHudson() {
             <PremiumTrustCard
               key={signal.label}
               icon={signal.icon}
+              logo={signal.logo}
               value={signal.value}
               label={signal.label}
               description={signal.description}

@@ -10,7 +10,7 @@
 export const BRAND = {
   name: 'Hudson Information Technology & Manpower Services',
   shortName: 'Hudson',
-  tagline: 'Global Workforce Solutions',
+  tagline: 'Intelligent Workforce Solutions',
   description: 'Reliable, compliant, and scalable staffing solutions for Oil & Gas, IT, and Hospitality industries worldwide.',
   industries: 'Oil & Gas, IT, and Hospitality',
   founded: 'Early 2019',
@@ -60,6 +60,7 @@ export const BRAND = {
 // ============================================================================
 
 export const NAV_LINKS = [
+  { href: '/', label: 'Home' },
   { href: '/industries', label: 'Industries' },
   { href: '/software-solutions', label: 'Software Solutions' },
   { href: '/about', label: 'About Us' },
@@ -73,7 +74,8 @@ export const NAV_LINKS = [
 
 export const SOFTWARE_SOLUTIONS = {
   href: '/software-solutions',
-  icon: '💼',
+  icon: 'code',
+  logo: '/images/logos/software-solutions.svg', // Add logo image here when available
   title: 'Software Solutions',
   shortTitle: 'Enterprise Software Development',
   meta: {
@@ -124,7 +126,8 @@ export const SOFTWARE_SOLUTIONS = {
 export const INDUSTRIES = {
   oilGas: {
     href: '/oil-and-gas-staffing',
-    icon: '⚡',
+    icon: 'fire',
+    logo: '/images/logos/oil-gas.svg', // Add logo image here when available
     title: 'Oil & Gas Staffing',
     shortTitle: 'Oil & Gas Staffing Solutions',
     meta: {
@@ -259,7 +262,8 @@ export const INDUSTRIES = {
   },
   it: {
     href: '/us-it-staffing',
-    icon: '💻',
+    icon: 'cpu',
+    logo: '/images/logos/it-staffing.svg', // Add logo image here when available
     title: 'US IT Staffing',
     shortTitle: 'US IT Staffing & Technology Talent',
     meta: {
@@ -316,7 +320,8 @@ export const INDUSTRIES = {
   },
   hospitality: {
     href: '/hospitality-staffing',
-    icon: '🏨',
+    icon: 'star',
+    logo: '/images/logos/hospitality.svg', // Add logo image here when available
     title: 'Hospitality Staffing',
     shortTitle: 'Hospitality & F&B Staffing Solutions',
     meta: {
@@ -371,6 +376,60 @@ export const INDUSTRIES = {
       href: '/contact',
     },
   },
+  healthcare: {
+    href: '/healthcare-staffing',
+    icon: 'beaker',
+    logo: '/images/logos/healthcare.svg',
+    title: 'Healthcare Staffing',
+    shortTitle: 'Healthcare & Medical Staffing',
+    meta: {
+      title: 'Healthcare & Medical Staffing Solutions | Medical Professionals',
+      description: 'Catering to staffing for medical services, healthcare administration, and biotechnology, prioritizing expertise and compassionate care.',
+      keywords: ['healthcare staffing', 'medical staffing', 'nurses', 'doctors', 'healthcare professionals', 'medical recruitment', 'healthcare jobs'],
+    },
+    hero: {
+      heading: 'Healthcare & Medical Staffing Solutions',
+      description: 'Catering to staffing for medical services, healthcare administration, and biotechnology, prioritizing expertise and compassionate care.',
+    },
+    card: {
+      title: 'Healthcare & Medical Staffing',
+      description: 'Catering to staffing for medical services, healthcare administration, and biotechnology, prioritizing expertise and compassionate care.',
+    },
+    showcase: {
+      title: 'Healthcare & Medical Staffing',
+      bullets: [
+        'Licensed medical professionals',
+        'HIPAA compliant staffing',
+        '24/7 healthcare support',
+      ],
+    },
+    sections: [
+      {
+        title: 'Clinical Staffing',
+        description: 'Licensed healthcare professionals for hospitals, clinics, and medical facilities.',
+        items: [
+          'Registered Nurses',
+          'Doctors and Physicians',
+          'Medical Technicians',
+          'Pharmacists',
+        ],
+      },
+      {
+        title: 'Healthcare Administration',
+        description: 'Administrative and support staff for healthcare facilities.',
+        items: [
+          'Medical Administrators',
+          'Healthcare IT Specialists',
+          'Medical Coders',
+          'Healthcare Assistants',
+        ],
+      },
+    ],
+    cta: {
+      text: 'Find Healthcare Talent',
+      href: '/contact',
+    },
+  },
 } as const
 
 // ============================================================================
@@ -390,7 +449,7 @@ export const HOME = {
       line2: 'Workforce',
       line3: 'Solutions',
     },
-    description: `Hudson delivers reliable, compliant and scalable staffing across industries worldwide.`,
+    description: `Where elite talent meets visionary companies. Next-generation workforce solutions powered by intelligent matching and global expertise.`,
     cta: {
       primary: {
         text: 'Software Solutions',
@@ -407,6 +466,7 @@ export const HOME = {
     INDUSTRIES.oilGas,
     INDUSTRIES.it,
     INDUSTRIES.hospitality,
+    INDUSTRIES.healthcare,
   ],
   stats: [
     { value: '10K+', label: 'Workers', sublabel: 'Deployed Globally', delay: 0 },
@@ -416,40 +476,67 @@ export const HOME = {
   ],
   trustSignals: [
     {
-      value: '10,000+',
-      label: 'Workers Deployed',
-      description: 'Successfully placed professionals across global markets',
-      icon: '👥',
+      value: '1000+',
+      label: 'Licensed for Scale',
+      description: 'Government of India–issued recruitment license enabling overseas deployment of 1000+ candidates annually, built for high-volume, high-stakes hiring.',
+      icon: 'check-circle',
+      logo: '/images/logos/licensed.svg',
     },
     {
-      value: '12+',
-      label: 'Global Industries',
-      description: 'Serving diverse sectors from energy to technology',
-      icon: '🌍',
+      value: 'Dual',
+      label: 'Recruitment Model',
+      description: 'Executive search for professional and leadership roles, combined with campaign-based hiring for skilled and trade workforce requirements.',
+      icon: 'users',
+      logo: '/images/logos/recruitment.svg',
     },
     {
-      value: 'Fast',
-      label: 'Mobilization',
-      description: 'Rapid deployment with streamlined onboarding processes',
-      icon: '⚡',
+      value: 'Global',
+      label: 'Talent, Local Alignment',
+      description: 'Proven ability to source talent internationally while aligning with local market regulations, workforce expectations, and project realities.',
+      icon: 'globe',
+      logo: '/images/logos/global-talent.svg',
     },
     {
-      value: 'VMS',
-      label: 'Friendly Workflow',
-      description: 'Seamless integration with vendor management systems',
-      icon: '🔄',
+      value: 'Fully',
+      label: 'Managed Compliance',
+      description: 'End-to-end handling of visa processing, medicals, documentation, relocation, onboarding, and deployment so clients can focus on execution.',
+      icon: 'arrows-sync',
+      logo: '/images/logos/compliance.svg',
     },
     {
-      value: '24/7',
-      label: 'Support',
-      description: 'Round-the-clock assistance for clients and candidates',
-      icon: '🛟',
+      value: 'Quality',
+      label: 'First Hiring',
+      description: 'Rigorous multi-stage screening for white-collar roles and client-integrated trade testing for blue-collar staff to ensure job-ready deployments.',
+      icon: 'star',
+      logo: '/images/logos/quality.svg',
     },
     {
-      value: '100%',
-      label: 'Compliance',
-      description: 'Full documentation and regulatory expertise',
-      icon: '✅',
+      value: 'Tech',
+      label: 'Backed Delivery',
+      description: 'Demonstrated experience in building and delivering scalable web and mobile solutions, strengthening recruitment operations through systems, automation, and AI-led workflows.',
+      icon: 'code',
+      logo: '/images/logos/technology.svg',
+    },
+    {
+      value: 'Transparent',
+      label: 'Communication',
+      description: 'Clear timelines, regular updates, and accountable delivery, reducing friction and ensuring predictable outcomes.',
+      icon: 'lifebuoy',
+      logo: '/images/logos/communication.svg',
+    },
+    {
+      value: 'ROI',
+      label: 'Focused Engagements',
+      description: 'Projects delivered on time and within budget, with a relentless focus on tangible business impact, not vanity features or unnecessary complexity.',
+      icon: 'briefcase',
+      logo: '/images/logos/roi.svg',
+    },
+    {
+      value: 'Partnership',
+      label: 'Mindset',
+      description: "We don't operate as a transactional vendor. Our goal is to become a long-term partner in your growth, evolution, and operational success.",
+      icon: 'hand-raised',
+      logo: '/images/logos/partnership.svg',
     },
   ],
   industryShowcase: [

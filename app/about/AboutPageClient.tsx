@@ -9,37 +9,31 @@ const hudsonPrinciples = [
     letter: 'H',
     word: 'Honesty',
     description: 'We uphold transparency and honesty in all our interactions with clients and candidates alike.',
-    gradient: 'from-blue-500 to-cyan-500',
   },
   {
     letter: 'U',
     word: 'Uncompromising Quality',
     description: 'Our commitment to excellence is unwavering, ensuring only the best talent and services.',
-    gradient: 'from-purple-500 to-pink-500',
   },
   {
     letter: 'D',
     word: 'Dedicated Service',
     description: 'Every client is important to us, and we show it through our personalized and dedicated approach.',
-    gradient: 'from-orange-500 to-red-500',
   },
   {
     letter: 'S',
     word: 'Strategic Solutions',
     description: 'We think ahead, providing strategic staffing and project management solutions.',
-    gradient: 'from-green-500 to-emerald-500',
   },
   {
     letter: 'O',
     word: 'Outcome Oriented',
     description: 'Our focus is always on delivering positive, measurable outcomes for your business.',
-    gradient: 'from-indigo-500 to-blue-500',
   },
   {
     letter: 'N',
     word: 'Navigating Talent',
     description: 'We expertly navigate the global talent pool, connecting you with the skills and expertise you need.',
-    gradient: 'from-teal-500 to-cyan-500',
   },
 ]
 
@@ -48,19 +42,16 @@ const whyChooseUs = [
     title: 'Proven Expertise and Experience',
     description: 'With years of successful projects under our belt, The Hudson Group brings unmatched expertise and in-depth industry knowledge to every venture, ensuring that we understand the intricacies and unique requirements of your sector.',
     icon: '🎯',
-    gradient: 'from-blue-500/20 to-cyan-500/20',
   },
   {
     title: 'Tailored Staffing Solutions',
     description: 'We pride ourselves on offering customized solutions that align perfectly with your specific business needs. Our approach involves a thorough understanding of your project\'s demands, allowing us to deliver staffing solutions that are not just effective but also innovative.',
     icon: '⚡',
-    gradient: 'from-purple-500/20 to-pink-500/20',
   },
   {
     title: 'Commitment to Integrity and Reliability',
     description: 'At the core of The Hudson Group is a steadfast commitment to honesty and reliability. We build lasting relationships with our clients based on trust, delivering on our promises and maintaining the highest ethical standards in every interaction.',
     icon: '🤝',
-    gradient: 'from-orange-500/20 to-red-500/20',
   },
 ]
 
@@ -87,54 +78,107 @@ const commitmentValues = [
 export default function AboutPageClient() {
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section - Ultra Modern */}
-      <section className="relative pt-32 pb-24 overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-primary/5 to-secondary/10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.1),transparent_50%)]" />
-        </div>
+      {/* Hero Section - Matching Homepage Theme */}
+      <section className="relative flex items-center justify-center overflow-hidden pt-24 pb-16 lg:pt-32 lg:pb-20">
+        {/* Premium Soft Gradient Background with Hudson Colors */}
+        <div className="absolute inset-0 bg-gradient-to-br from-light via-white to-secondary/30" />
         
-        {/* Floating Orbs */}
-        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        {/* Animated Gradient Orbs with Parallax - Hudson Colors */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/20 to-primary/10 rounded-full blur-3xl opacity-70" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 to-accent/10 rounded-full blur-3xl opacity-70" />
+        <div className="absolute top-1/2 right-1/3 w-72 h-72 bg-gradient-to-br from-accent/15 to-primary/15 rounded-full blur-3xl opacity-60" />
+
+        {/* Subtle Grid Pattern with Hudson Colors */}
+        <div 
+          className="absolute inset-0 opacity-[0.02]" 
+          style={{
+            backgroundImage: `linear-gradient(rgba(240, 90, 40, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+          }} 
+        />
         
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-              <span className="block bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent">
-                About Us
-              </span>
+            {/* Badge */}
+            <motion.div
+              className="mb-5"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-accent/15 shadow-sm">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                <span className="text-xs font-semibold text-accent tracking-wide uppercase">Our Story</span>
+              </div>
+            </motion.div>
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-5 leading-[1.1] tracking-tight max-w-4xl mx-auto">
+              <span className="block text-dark mb-2">About</span>
+              <span className="block gradient-text">Us</span>
             </h1>
             
             <motion.p
-              className="text-2xl sm:text-3xl text-text/70 max-w-4xl mx-auto leading-relaxed font-light"
+              className="text-lg sm:text-xl lg:text-2xl text-text/70 max-w-3xl mx-auto leading-relaxed mb-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
               Empowering Your Business with{' '}
-              <span className="font-semibold text-accent">Innovative Software</span>
+              <span className="font-bold text-accent">Innovative Software</span>
               {' '}and{' '}
-              <span className="font-semibold text-primary">Exceptional Talent</span>
+              <span className="font-bold text-accent">Exceptional Talent</span>
             </motion.p>
           </motion.div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+          animate={{ y: [0, 8, 0] }} 
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="text-[10px] text-text/30 font-medium tracking-wider uppercase">Scroll</span>
+          <div className="w-5 h-8 border border-text/15 rounded-full flex justify-center p-1.5">
+            <motion.div 
+              className="w-1.5 h-1.5 bg-accent/60 rounded-full" 
+              animate={{ y: [0, 16, 0] }} 
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }} 
+            />
+          </div>
+        </motion.div>
       </section>
 
-      {/* Hudson's Roots Section - Enhanced Creative Design */}
-      <section className="relative py-24 bg-gradient-to-b from-white via-light/20 to-white overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-accent/5 via-primary/5 to-secondary/5 rounded-full blur-3xl" />
-        </div>
+      {/* Hudson's Roots Section - Brand Colors */}
+      <section className="relative py-16 lg:py-24 overflow-hidden bg-white">
+        {/* Premium Background Texture */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E")`,
+            opacity: 0.03,
+          }}
+        />
+        
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(240, 90, 40, 0.06), transparent 70%)',
+          }}
+        />
+        
+        <div 
+          className="absolute inset-0 opacity-[0.015] pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+            backgroundSize: '50px 50px',
+          }} 
+        />
 
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
           {/* Main Content Container */}
@@ -147,7 +191,7 @@ export default function AboutPageClient() {
               viewport={{ once: true }}
               transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
             >
-              <div className="relative bg-gradient-to-r from-accent to-primary rounded-full px-6 py-3 shadow-2xl border-2 border-white">
+              <div className="relative bg-gradient-to-r from-accent to-accent/90 rounded-full px-6 py-3 shadow-2xl border-2 border-white">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
                   <span className="text-white font-bold text-sm sm:text-base">
@@ -156,7 +200,7 @@ export default function AboutPageClient() {
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
                 </div>
                 {/* Arrow pointing down */}
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-primary" />
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-accent" />
               </div>
             </motion.div>
 
@@ -170,15 +214,15 @@ export default function AboutPageClient() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
-                <div className="relative h-full bg-gradient-to-br from-blue-50 via-white to-cyan-50 rounded-3xl p-8 lg:p-10 border-2 border-blue-200/50 shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden">
+                <div className="relative h-full bg-white/70 backdrop-blur-md rounded-[32px] p-8 lg:p-10 border border-accent/10 shadow-lg hover:shadow-xl hover:border-accent/30 transition-all duration-500 overflow-hidden">
                   {/* Animated Background Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* Icon/Visual Element */}
                   <div className="absolute top-6 right-6 w-20 h-20 lg:w-24 lg:h-24">
                     <div className="relative w-full h-full">
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl rotate-12 group-hover:rotate-6 transition-transform duration-500 shadow-xl" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-2xl -rotate-6 group-hover:-rotate-12 transition-transform duration-500 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-primary/10 rounded-2xl rotate-12 group-hover:rotate-6 transition-transform duration-500 shadow-xl" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-accent/15 to-primary/10 rounded-2xl -rotate-6 group-hover:-rotate-12 transition-transform duration-500 flex items-center justify-center">
                         <span className="text-4xl">💻</span>
                       </div>
                     </div>
@@ -186,14 +230,14 @@ export default function AboutPageClient() {
 
                   <div className="relative z-10 pr-20 lg:pr-24">
                     <div className="inline-block mb-4">
-                      <span className="px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-700 font-semibold text-xs uppercase tracking-wide">
+                      <span className="px-4 py-1.5 rounded-full bg-accent/20 text-accent font-semibold text-xs uppercase tracking-wide">
                         Software & IT Staffing
                       </span>
                     </div>
-                    <h3 className="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                    <h3 className="text-3xl lg:text-4xl font-bold mb-4 gradient-text">
                       HudsonIT Consultancy Ltd
                     </h3>
-                    <div className="w-16 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6" />
+                    <div className="w-16 h-1 bg-gradient-to-r from-accent to-primary rounded-full mb-6" />
                     <p className="text-lg text-text/70 leading-relaxed mb-6">
                       A dynamic Software Solutions and IT Staffing firm in United States, delivering cutting-edge technology solutions and exceptional talent.
                     </p>
@@ -209,7 +253,7 @@ export default function AboutPageClient() {
                           viewport={{ once: true }}
                           transition={{ delay: 0.5 + idx * 0.1 }}
                         >
-                          <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                           <span className="text-sm lg:text-base">{feature}</span>
                         </motion.li>
                       ))}
@@ -217,8 +261,8 @@ export default function AboutPageClient() {
                   </div>
 
                   {/* Decorative Corner Elements */}
-                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-blue-500/10 to-transparent rounded-tr-full" />
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-cyan-500/10 to-transparent rounded-bl-full" />
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-accent/10 to-transparent rounded-tr-full" />
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full" />
                 </div>
               </motion.div>
 
@@ -231,9 +275,9 @@ export default function AboutPageClient() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full blur-md opacity-50" />
-                  <div className="absolute inset-2 bg-white rounded-full border-4 border-purple-500 flex items-center justify-center shadow-xl">
-                    <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
+                  <div className="absolute inset-0 bg-gradient-to-r from-accent via-primary to-accent rounded-full blur-md opacity-50" />
+                  <div className="absolute inset-2 bg-white rounded-full border-4 border-accent flex items-center justify-center shadow-xl">
+                    <span className="text-2xl font-bold gradient-text">
                       &
                     </span>
                   </div>
@@ -248,15 +292,15 @@ export default function AboutPageClient() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <div className="relative h-full bg-gradient-to-br from-purple-50 via-white to-pink-50 rounded-3xl p-8 lg:p-10 border-2 border-purple-200/50 shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden">
+                <div className="relative h-full bg-white/70 backdrop-blur-md rounded-[32px] p-8 lg:p-10 border border-accent/10 shadow-lg hover:shadow-xl hover:border-accent/30 transition-all duration-500 overflow-hidden">
                   {/* Animated Background Gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-pink-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* Icon/Visual Element */}
                   <div className="absolute top-6 right-6 w-20 h-20 lg:w-24 lg:h-24">
                     <div className="relative w-full h-full">
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl -rotate-12 group-hover:-rotate-6 transition-transform duration-500 shadow-xl" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform duration-500 flex items-center justify-center">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl -rotate-12 group-hover:-rotate-6 transition-transform duration-500 shadow-xl" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/15 to-accent/10 rounded-2xl rotate-6 group-hover:rotate-12 transition-transform duration-500 flex items-center justify-center">
                         <span className="text-4xl">👥</span>
                       </div>
                     </div>
@@ -264,14 +308,14 @@ export default function AboutPageClient() {
 
                   <div className="relative z-10 pr-20 lg:pr-24">
                     <div className="inline-block mb-4">
-                      <span className="px-4 py-1.5 rounded-full bg-purple-500/20 text-purple-700 font-semibold text-xs uppercase tracking-wide">
+                      <span className="px-4 py-1.5 rounded-full bg-primary/20 text-dark font-semibold text-xs uppercase tracking-wide">
                         Global Recruitment
                       </span>
                     </div>
-                    <h3 className="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                    <h3 className="text-3xl lg:text-4xl font-bold mb-4 gradient-text">
                       Hudson Manpower Inc
                     </h3>
-                    <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mb-6" />
+                    <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent rounded-full mb-6" />
                     <p className="text-lg text-text/70 leading-relaxed mb-6">
                       Specializing in offering comprehensive recruitment services for technical industries worldwide, ensuring quality hires for various sectors.
                     </p>
@@ -287,7 +331,7 @@ export default function AboutPageClient() {
                           viewport={{ once: true }}
                           transition={{ delay: 0.6 + idx * 0.1 }}
                         >
-                          <div className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent" />
                           <span className="text-sm lg:text-base">{feature}</span>
                         </motion.li>
                       ))}
@@ -295,8 +339,8 @@ export default function AboutPageClient() {
                   </div>
 
                   {/* Decorative Corner Elements */}
-                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-500/10 to-transparent rounded-tl-full" />
-                  <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-pink-500/10 to-transparent rounded-br-full" />
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-primary/10 to-transparent rounded-tl-full" />
+                  <div className="absolute top-0 left-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-transparent rounded-br-full" />
                 </div>
               </motion.div>
             </div>
@@ -309,7 +353,7 @@ export default function AboutPageClient() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border-2 border-gray-200/50 shadow-2xl overflow-hidden">
+              <div className="relative bg-white/80 backdrop-blur-sm rounded-[32px] p-8 lg:p-12 border border-accent/10 shadow-xl overflow-hidden">
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-5">
                   <div className="absolute inset-0" style={{
@@ -320,13 +364,13 @@ export default function AboutPageClient() {
                 </div>
 
                 {/* Gradient Overlays */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 to-transparent rounded-full blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-500/10 to-transparent rounded-full blur-3xl" />
+                <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-accent/10 to-transparent rounded-full blur-3xl" />
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl" />
 
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-8">
                     <div className="w-12 h-1 bg-gradient-to-r from-accent to-primary rounded-full" />
-                    <h3 className="text-2xl lg:text-3xl font-bold bg-gradient-to-r from-dark to-dark bg-clip-text text-transparent">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-dark">
                       Our Journey
                     </h3>
                     <div className="flex-1 h-1 bg-gradient-to-r from-primary to-secondary rounded-full" />
@@ -353,7 +397,7 @@ export default function AboutPageClient() {
 
                   {/* Stats/Highlights */}
                   <motion.div
-                    className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10 pt-10 border-t border-gray-200"
+                    className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-10 pt-10 border-t border-accent/10"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -365,7 +409,7 @@ export default function AboutPageClient() {
                       { label: 'Industries Served', value: 'Multiple' },
                     ].map((stat, idx) => (
                       <div key={stat.label} className="text-center">
-                        <div className="text-3xl font-bold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent mb-2">
+                        <div className="text-3xl font-bold gradient-text mb-2">
                           {stat.value}
                         </div>
                         <div className="text-sm text-text/60 font-medium">{stat.label}</div>
@@ -379,141 +423,180 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* Hudson's Principles Section - Creative Timeline Design */}
-      <section className="relative py-24 bg-gradient-to-b from-light/30 via-white to-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_70%)]" />
+      {/* Hudson's Principles Section - Ultra Creative Modern Design */}
+      <section className="relative py-24 lg:py-32 overflow-hidden bg-white">
+        {/* Premium Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/8 to-primary/5 rounded-full blur-3xl opacity-60" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/8 to-accent/5 rounded-full blur-3xl opacity-60" />
+        </div>
+        
+        <div 
+          className="absolute inset-0 opacity-[0.015] pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+            backgroundSize: '50px 50px',
+          }} 
+        />
         
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
-            className="text-center mb-20"
+            className="text-center mb-16 lg:mb-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-5xl sm:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
-                Hudson's Principles
-              </span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-5 tracking-tight">
+              <span className="gradient-text">Hudson's Principles</span>
             </h2>
-            <p className="text-xl text-text/60 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg lg:text-xl text-text/70 max-w-3xl mx-auto leading-relaxed">
               These pillars are foundational to our business philosophy, ensuring that when you partner with us, you are choosing a service that truly values and upholds your business objectives.
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-accent to-primary mx-auto mt-6 rounded-full" />
           </motion.div>
 
-          {/* Creative Vertical Timeline with Connecting Lines */}
-          <div className="relative max-w-5xl mx-auto">
-            {/* Central Connecting Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 hidden lg:block">
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-b from-accent via-primary to-secondary"
-                initial={{ scaleY: 0 }}
-                whileInView={{ scaleY: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-                style={{ transformOrigin: 'top' }}
-              />
+          {/* Ultra Creative Layout - Hexagonal/Connected Design */}
+          <div className="relative max-w-6xl mx-auto">
+            {/* Connecting Lines Background (Desktop) */}
+            <div className="hidden lg:block absolute inset-0 pointer-events-none">
+              <svg className="w-full h-full" style={{ minHeight: '600px' }}>
+                {hudsonPrinciples.map((_, index) => {
+                  if (index === hudsonPrinciples.length - 1) return null
+                  const row = Math.floor(index / 3)
+                  const col = index % 3
+                  const nextRow = Math.floor((index + 1) / 3)
+                  const nextCol = (index + 1) % 3
+                  
+                  if (row === nextRow && nextCol === col + 1) {
+                    // Horizontal connection
+                    const x1 = (col * 33.33) + 16.66
+                    const x2 = (nextCol * 33.33) + 16.66
+                    const y = (row * 50) + 25
+                    return (
+                      <motion.line
+                        key={`line-${index}`}
+                        x1={`${x1}%`}
+                        y1={`${y}%`}
+                        x2={`${x2}%`}
+                        y2={`${y}%`}
+                        stroke="url(#gradient)"
+                        strokeWidth="2"
+                        strokeDasharray="5,5"
+                        opacity="0.2"
+                        initial={{ pathLength: 0 }}
+                        whileInView={{ pathLength: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1, delay: index * 0.1 }}
+                      />
+                    )
+                  }
+                  return null
+                })}
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#F05A28" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="#000000" stopOpacity="0.3" />
+                  </linearGradient>
+                </defs>
+              </svg>
             </div>
 
-            {/* Principles Timeline Items */}
-            <div className="space-y-12 lg:space-y-16">
+            {/* Principles Grid - Creative Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 relative z-10">
               {hudsonPrinciples.map((principle, index) => (
                 <motion.div
                   key={principle.letter}
-                  className="relative group"
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.8, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+                  className="group relative"
+                  initial={{ opacity: 0, y: 50, rotateY: -15 }}
+                  whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.7, 
+                    delay: index * 0.1,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  style={{ perspective: 1000 }}
                 >
-                  <div className={`flex flex-col lg:flex-row items-center gap-6 lg:gap-8 ${
-                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                  }`}>
-                    {/* Letter Badge - Always on left for mobile, alternating for desktop */}
-                    <div className="relative flex-shrink-0">
-                      <motion.div
-                        className={`relative w-24 h-24 lg:w-32 lg:h-32 rounded-3xl bg-gradient-to-br ${principle.gradient} flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 z-10`}
-                        whileHover={{ scale: 1.1, rotate: 6 }}
-                      >
-                        <span className="text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
-                          {principle.letter}
-                        </span>
-                        {/* Animated Ring */}
-                        <motion.div
-                          className={`absolute inset-0 rounded-3xl border-4 border-white/30`}
-                          animate={{
-                            scale: [1, 1.2, 1],
-                            opacity: [0.5, 0, 0.5],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: index * 0.3,
-                          }}
-                        />
-                      </motion.div>
+                  <div className="relative h-full bg-white/90 backdrop-blur-md rounded-[28px] p-6 lg:p-7 border-2 border-accent/10 shadow-lg hover:shadow-2xl hover:border-accent/40 transition-all duration-500 overflow-hidden group-hover:-translate-y-2">
+                    {/* Animated Background Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-primary/0 group-hover:from-accent/8 group-hover:via-accent/5 group-hover:to-primary/8 transition-all duration-500 rounded-[28px]" />
+                    
+                    {/* Letter Badge - Modern Hexagonal Style */}
+                    <div className="relative mb-5 flex items-start">
+                      <div className="relative">
+                        {/* Large Letter Background */}
+                        <div className="relative w-16 h-16 lg:w-20 lg:h-20">
+                          {/* Hexagon-like shape with rounded corners */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent/10 rounded-2xl rotate-45 group-hover:rotate-12 transition-transform duration-500" />
+                          <div className="absolute inset-1 bg-gradient-to-br from-accent/15 to-primary/10 rounded-xl -rotate-6 group-hover:rotate-6 transition-transform duration-500 flex items-center justify-center border-2 border-accent/30 backdrop-blur-sm shadow-lg">
+                            <span className="text-3xl lg:text-4xl font-black text-accent relative z-10 rotate-6 group-hover:rotate-0 transition-transform duration-500">
+                              {principle.letter}
+                            </span>
+                          </div>
+                          {/* Glow Effect */}
+                          <div className="absolute -inset-2 bg-accent/20 rounded-2xl blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        </div>
+                      </div>
                       
-                      {/* Connecting Line to Center (Desktop only) */}
-                      {index < hudsonPrinciples.length - 1 && (
-                        <div className="hidden lg:block absolute top-full left-1/2 w-1 h-16 -translate-x-1/2">
-                          <motion.div
-                            className={`absolute inset-0 bg-gradient-to-b ${principle.gradient}`}
-                            initial={{ scaleY: 0 }}
-                            whileInView={{ scaleY: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: index * 0.15 + 0.3 }}
-                            style={{ transformOrigin: 'top' }}
-                          />
+                      {/* Number Indicator */}
+                      <div className="ml-auto">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent/20 to-primary/10 border border-accent/20 flex items-center justify-center text-xs font-bold text-accent backdrop-blur-sm">
+                          {index + 1}
                         </div>
-                      )}
+                      </div>
                     </div>
 
-                    {/* Content Panel */}
-                    <div className={`flex-1 ${
-                      index % 2 === 0 ? 'lg:text-left' : 'lg:text-right'
-                    } text-center lg:text-left`}>
-                      <motion.div
-                        className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-8 lg:p-10 border border-gray-100 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden group-hover:border-accent/30"
-                        whileHover={{ scale: 1.02 }}
-                      >
-                        {/* Gradient Overlay on Hover */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${principle.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
-                        
-                        {/* Content */}
-                        <div className="relative z-10">
-                          <h3 className="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-dark to-dark bg-clip-text text-transparent">
-                            {principle.word}
-                          </h3>
-                          <div className={`w-20 h-1 bg-gradient-to-r ${principle.gradient} mb-6 ${
-                            index % 2 === 0 ? 'lg:ml-0' : 'lg:mr-0 lg:ml-auto'
-                          } mx-auto lg:mx-0`} />
-                          <p className="text-lg text-text/70 leading-relaxed">
-                            {principle.description}
-                          </p>
-                        </div>
-
-                        {/* Decorative Elements */}
-                        <div className={`absolute top-0 ${index % 2 === 0 ? 'right-0' : 'left-0'} w-40 h-40 bg-gradient-to-br ${principle.gradient} opacity-5 rounded-bl-full ${index % 2 === 1 ? 'rounded-bl-none rounded-br-full' : ''}`} />
-                        <div className={`absolute bottom-0 ${index % 2 === 0 ? 'left-0' : 'right-0'} w-32 h-32 bg-gradient-to-tr ${principle.gradient} opacity-5 rounded-tr-full ${index % 2 === 1 ? 'rounded-tr-none rounded-tl-full' : ''}`} />
-                        
-                        {/* Shimmer Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-                      </motion.div>
+                    {/* Content */}
+                    <div className="relative z-10 space-y-3">
+                      <h3 className="text-xl lg:text-2xl font-bold text-dark group-hover:text-accent transition-colors duration-300 leading-tight">
+                        {principle.word}
+                      </h3>
+                      <p className="text-sm lg:text-base text-text/70 leading-relaxed">
+                        {principle.description}
+                      </p>
                     </div>
+
+                    {/* Bottom Accent Bar */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-transparent via-accent/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-b-[28px]" />
+
+                    {/* Corner Accents */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-gradient-to-tr from-primary/10 to-transparent rounded-tr-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    
+                    {/* Shine Effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent opacity-0 group-hover:opacity-100 rounded-[28px]"
+                      initial={{ x: '-100%' }}
+                      whileHover={{ x: '100%' }}
+                      transition={{ duration: 0.7 }}
+                    />
                   </div>
                 </motion.div>
               ))}
             </div>
-
-            {/* Bottom Accent */}
           </div>
         </div>
       </section>
 
-      {/* The Hudson Vanguard - Team Section - Premium Design */}
-      <section className="relative py-24 bg-gradient-to-b from-white via-light/20 to-white overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(59,130,246,0.05),transparent_50%)]" />
+      {/* The Hudson Vanguard - Team Section - Brand Colors */}
+      <section className="relative py-28 lg:py-36 overflow-hidden bg-white">
+        {/* Premium Background Texture */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E")`,
+            opacity: 0.03,
+          }}
+        />
+        
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 80% 50% at 50% 50%, rgba(240, 90, 40, 0.06), transparent 70%)',
+          }}
+        />
         
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <motion.div
@@ -524,11 +607,11 @@ export default function AboutPageClient() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-5xl sm:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">
+              <span className="gradient-text">
                 The Hudson Vanguard
               </span>
             </h2>
-            <p className="text-xl text-text/60 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-text/70 max-w-3xl mx-auto leading-relaxed">
               Meet the visionary leaders driving innovation and excellence at The Hudson Group
             </p>
             <div className="w-24 h-1 bg-gradient-to-r from-accent to-primary mx-auto mt-6 rounded-full" />
@@ -544,7 +627,7 @@ export default function AboutPageClient() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
               >
-                <div className="relative bg-white rounded-2xl p-5 md:p-6 lg:p-7 border border-gray-100 shadow-xl overflow-hidden">
+                <div className="relative bg-white/70 backdrop-blur-md rounded-[32px] p-5 md:p-6 lg:p-7 border border-accent/10 shadow-xl overflow-hidden">
                   {/* Background Gradient */}
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
@@ -606,13 +689,15 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {/* Our Commitment Section - Enhanced Creative Design */}
-      <section className="relative py-32 bg-gradient-to-b from-white via-light/30 to-white overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-accent/5 via-primary/5 to-secondary/5 rounded-full blur-3xl" />
+      {/* Our Commitment Section - Brand Colors */}
+      <section className="relative py-28 lg:py-36 overflow-hidden bg-light">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-[0.012] pointer-events-none">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(45deg, currentColor 1px, transparent 1px),
+                              linear-gradient(-45deg, currentColor 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+          }} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
@@ -631,23 +716,23 @@ export default function AboutPageClient() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
             >
-              <span className="px-6 py-2 rounded-full bg-gradient-to-r from-accent/20 to-primary/20 border border-accent/30 text-accent font-semibold text-sm backdrop-blur-sm">
+              <span className="px-6 py-2 rounded-full bg-accent/20 border border-accent/30 text-accent font-semibold text-sm backdrop-blur-sm">
                 Our Promise
               </span>
             </motion.div>
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-accent via-primary to-secondary bg-clip-text text-transparent">
+              <span className="gradient-text">
                 Our Commitment
               </span>
             </h2>
-            <p className="text-xl lg:text-2xl text-text/60 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl lg:text-2xl text-text/70 mb-8 max-w-3xl mx-auto">
               To You Embodies <span className="font-semibold text-accent">Two Key Values</span>
             </p>
-            <div className="w-32 h-1.5 bg-gradient-to-r from-accent via-primary to-secondary mx-auto rounded-full" />
+            <div className="w-32 h-1.5 bg-gradient-to-r from-accent via-primary to-accent mx-auto rounded-full" />
           </motion.div>
 
           {/* Two Key Values - Creative Split Design */}
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-20">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-20 max-w-5xl mx-auto">
             {commitmentValues.map((value, index) => (
               <motion.div
                 key={index}
@@ -657,73 +742,25 @@ export default function AboutPageClient() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
               >
-                <div className="relative h-full bg-white rounded-3xl p-8 lg:p-10 border-2 border-gray-200/50 shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden">
+                <div className="relative h-full bg-white/70 backdrop-blur-md rounded-[32px] p-8 lg:p-10 border border-accent/10 shadow-xl hover:shadow-2xl hover:border-accent/30 transition-all duration-500 overflow-hidden">
                   {/* Animated Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${
-                    index === 0 
-                      ? 'from-blue-500/10 via-cyan-500/5 to-transparent' 
-                      : 'from-purple-500/10 via-pink-500/5 to-transparent'
-                  } opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   {/* Large Number Badge - Creative Design */}
                   <div className="relative mb-8">
                     <motion.div
-                      className={`relative w-24 h-24 lg:w-28 lg:h-28 mx-auto lg:mx-0 ${
-                        index === 0 
-                          ? 'bg-gradient-to-br from-blue-500 to-cyan-500' 
-                          : 'bg-gradient-to-br from-purple-500 to-pink-500'
-                      } rounded-3xl flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
-                      whileHover={{ scale: 1.1, rotate: 6 }}
+                      className="relative w-24 h-24 lg:w-28 lg:h-28 mx-auto bg-gradient-to-br from-accent/15 to-primary/10 border-2 border-accent/20 rounded-full flex items-center justify-center backdrop-blur-md shadow-lg group-hover:scale-110 group-hover:border-accent/40 transition-all duration-500"
+                      whileHover={{ scale: 1.1 }}
                     >
-                      <span className="text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+                      <span className="text-5xl lg:text-6xl font-black text-accent">
                         {index + 1}
                       </span>
-                      {/* Animated Ring */}
-                      <motion.div
-                        className={`absolute inset-0 rounded-3xl border-4 ${
-                          index === 0 ? 'border-blue-300/50' : 'border-purple-300/50'
-                        }`}
-                        animate={{
-                          scale: [1, 1.3, 1],
-                          opacity: [0.5, 0, 0.5],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          delay: index * 0.5,
-                        }}
-                      />
                     </motion.div>
-                    
-                    {/* Connecting Line (Desktop only, between the two cards) */}
-                    {index === 0 && (
-                      <div className="hidden lg:block absolute top-1/2 -right-6 w-12 h-1 z-10">
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.8, delay: 0.4 }}
-                          style={{ transformOrigin: 'left' }}
-                        />
-                        <motion.div
-                          className="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-gradient-to-r from-blue-500 to-pink-500 rounded-full"
-                          initial={{ scale: 0 }}
-                          whileInView={{ scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-                        />
-                      </div>
-                    )}
                   </div>
 
                   {/* Content */}
-                  <div className="relative z-10 text-center lg:text-left">
-                    <div className={`w-20 h-1 mx-auto lg:mx-0 mb-6 rounded-full ${
-                      index === 0 
-                        ? 'bg-gradient-to-r from-blue-500 to-cyan-500' 
-                        : 'bg-gradient-to-r from-purple-500 to-pink-500'
-                    }`} />
+                  <div className="relative z-10 text-center">
+                    <div className="w-20 h-1 mx-auto mb-6 rounded-full bg-gradient-to-r from-accent to-primary" />
                     <p className="text-lg lg:text-xl text-text/70 leading-relaxed">
                       {value}
                     </p>
@@ -732,18 +769,10 @@ export default function AboutPageClient() {
                   {/* Decorative Elements */}
                   <div className={`absolute top-0 ${
                     index === 0 ? 'right-0' : 'left-0'
-                  } w-40 h-40 bg-gradient-to-br ${
-                    index === 0 
-                      ? 'from-blue-500/10 to-transparent' 
-                      : 'from-purple-500/10 to-transparent'
-                  } rounded-bl-full ${index === 1 ? 'rounded-bl-none rounded-br-full' : ''}`} />
+                  } w-40 h-40 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-full ${index === 1 ? 'rounded-bl-none rounded-br-full' : ''}`} />
                   <div className={`absolute bottom-0 ${
                     index === 0 ? 'left-0' : 'right-0'
-                  } w-32 h-32 bg-gradient-to-tr ${
-                    index === 0 
-                      ? 'from-cyan-500/10 to-transparent' 
-                      : 'from-pink-500/10 to-transparent'
-                  } rounded-tr-full ${index === 1 ? 'rounded-tr-none rounded-tl-full' : ''}`} />
+                  } w-32 h-32 bg-gradient-to-tr from-primary/10 to-transparent rounded-tr-full ${index === 1 ? 'rounded-tr-none rounded-tl-full' : ''}`} />
                   
                   {/* Shimmer Effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
@@ -754,13 +783,13 @@ export default function AboutPageClient() {
 
           {/* Final Statement - Enhanced Design */}
           <motion.div
-            className="relative"
+            className="relative max-w-5xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative bg-gradient-to-br from-white via-light/50 to-white rounded-3xl p-10 lg:p-16 border-2 border-gray-200/50 shadow-2xl overflow-hidden">
+            <div className="relative bg-white/80 backdrop-blur-sm rounded-[32px] p-10 lg:p-16 border border-accent/10 shadow-xl overflow-hidden">
               {/* Animated Background Pattern */}
               <div className="absolute inset-0 opacity-5">
                 <div className="absolute inset-0" style={{
@@ -771,24 +800,24 @@ export default function AboutPageClient() {
               </div>
 
               {/* Gradient Overlays */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-transparent rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-purple-500/10 via-pink-500/10 to-transparent rounded-full blur-3xl" />
+              <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-accent/10 to-transparent rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-primary/10 to-transparent rounded-full blur-3xl" />
 
               {/* Content */}
               <div className="relative z-10">
                 <div className="flex items-center justify-center gap-4 mb-8">
                   <div className="w-12 h-1 bg-gradient-to-r from-accent to-primary rounded-full" />
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-accent to-primary" />
+                  <div className="w-3 h-3 rounded-full bg-accent" />
                   <div className="flex-1 h-1 bg-gradient-to-r from-primary to-secondary rounded-full" />
                 </div>
 
-                <p className="text-xl lg:text-2xl text-text/80 leading-relaxed text-center font-light max-w-5xl mx-auto">
+                <p className="text-xl lg:text-2xl text-text/70 leading-relaxed text-center font-light max-w-5xl mx-auto">
                   At The Hudson Group, we revolutionize how businesses operate with our{' '}
-                  <span className="font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                  <span className="font-semibold gradient-text">
                     cutting-edge software solutions
                   </span>
                   {' '}and{' '}
-                  <span className="font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  <span className="font-semibold gradient-text">
                     comprehensive staffing services
                   </span>
                   . With a rich history in staffing, we've evolved to lead in the software solution space, catering to diverse industries worldwide.
@@ -797,14 +826,14 @@ export default function AboutPageClient() {
                 {/* Bottom Accent */}
                 <div className="flex items-center justify-center gap-4 mt-8">
                   <div className="flex-1 h-1 bg-gradient-to-r from-secondary to-primary rounded-full" />
-                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-accent" />
+                  <div className="w-3 h-3 rounded-full bg-accent" />
                   <div className="w-12 h-1 bg-gradient-to-r from-primary to-accent rounded-full" />
                 </div>
               </div>
 
               {/* Corner Decorations */}
-              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-500/10 to-transparent rounded-br-full" />
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-500/10 to-transparent rounded-tl-full" />
+              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-accent/10 to-transparent rounded-br-full" />
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-primary/10 to-transparent rounded-tl-full" />
             </div>
           </motion.div>
         </div>

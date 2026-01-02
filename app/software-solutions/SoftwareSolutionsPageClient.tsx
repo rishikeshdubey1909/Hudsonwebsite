@@ -1,9 +1,8 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useParallax } from '@/hooks/useParallax'
 
 const softwareServices = [
   {
@@ -11,7 +10,6 @@ const softwareServices = [
     title: 'Interactive Solutions',
     description: 'We have crafted interactive solutions to enhance user experiences and boost engagement.',
     icon: '🎨',
-    gradient: 'from-blue-500 to-cyan-500',
     services: ['Portal Development', 'UX & UI Design', 'Digital Marketing', 'CMS & Web Design', 'Mobile Applications', 'Enterprise Content Management'],
     focus: 'Creating engaging digital experiences through web applications and mobile apps.',
   },
@@ -20,7 +18,6 @@ const softwareServices = [
     title: 'Product Engineering',
     description: 'End-to-end product engineering services, from concept to deployment.',
     icon: '⚙️',
-    gradient: 'from-purple-500 to-pink-500',
     services: ['Agile Development and Delivery', 'Full-Stack Development', 'Cross-Domain Expertise', 'Rapid Prototyping', 'Quality Assurance and Testing Excellence'],
     focus: 'Delivering innovative products with speed and quality.',
   },
@@ -29,7 +26,6 @@ const softwareServices = [
     title: 'Connected Enterprise',
     description: 'Connected Enterprise solutions designed to enhance operations, foster collaboration, and elevate efficiency.',
     icon: '🔗',
-    gradient: 'from-orange-500 to-red-500',
     services: ['End-to-end integration', 'Scalable and future-ready solutions', 'Security-first approach'],
     focus: 'Seamlessly connecting your business ecosystem for maximum efficiency.',
   },
@@ -38,7 +34,6 @@ const softwareServices = [
     title: 'Data & AI',
     description: 'Hudson IT leverages cloud data and artificial intelligence to transform business operations. Our integrated solutions utilize cloud computing for seamless data management and advanced AI algorithms to enhance decision-making and operational efficiency.',
     icon: '🤖',
-    gradient: 'from-green-500 to-emerald-500',
     services: ['Generative AI', 'Data Platform Modernization', 'AI and Machine Learning', 'Serverless Computing', 'Data Storage', 'Data Security and Privacy'],
     focus: 'Transforming businesses with intelligent data solutions and AI capabilities.',
   },
@@ -47,7 +42,6 @@ const softwareServices = [
     title: 'Data Management',
     description: 'Comprehensive data management solutions to ensure data accuracy, accessibility, and usability.',
     icon: '📊',
-    gradient: 'from-indigo-500 to-blue-500',
     services: ['Data Quality Management', 'Data Security and Compliance', 'Data Integration and Migration', 'Master Data Management (MDM)'],
     focus: 'Ensuring your data is accurate, secure, and accessible when you need it.',
   },
@@ -56,7 +50,6 @@ const softwareServices = [
     title: 'Application Management',
     description: 'Focusing on cloud application management, Hudson IT offers services that streamline cloud operations.',
     icon: '☁️',
-    gradient: 'from-teal-500 to-cyan-500',
     services: ['DevOps Integration', 'Intelligent Automation', 'Auto-Scaling', 'Application Monitoring', 'Performance Optimization'],
     focus: 'Optimizing cloud applications for peak performance and reliability.',
   },
@@ -65,7 +58,6 @@ const softwareServices = [
     title: 'Network Services',
     description: 'Hudson IT specializes in cloud network services, assisting organizations in optimizing their cloud network performance, security, and scalability.',
     icon: '🌐',
-    gradient: 'from-violet-500 to-purple-500',
     services: ['Enterprise Network Solutions', 'Network Managed Services'],
     focus: 'Building robust, secure, and scalable network infrastructure.',
   },
@@ -74,7 +66,6 @@ const softwareServices = [
     title: 'Data Engineering',
     description: 'Specialized data engineering services for modern data infrastructure.',
     icon: '🔧',
-    gradient: 'from-rose-500 to-pink-500',
     services: ['Data pipeline development', 'ETL/ELT processes', 'Data warehousing solutions'],
     focus: 'Building robust data pipelines and infrastructure for modern analytics.',
   },
@@ -83,7 +74,6 @@ const softwareServices = [
     title: 'Analytics & Business Intelligence',
     description: 'Advanced analytics and business intelligence solutions to drive data-driven decision making.',
     icon: '📈',
-    gradient: 'from-amber-500 to-orange-500',
     services: ['Business intelligence dashboards', 'Data visualization', 'Predictive analytics', 'Reporting solutions'],
     focus: 'Turning data into actionable insights for better business decisions.',
   },
@@ -92,7 +82,6 @@ const softwareServices = [
     title: 'Web Design & Development',
     description: 'Custom web design and development services for businesses of all sizes.',
     icon: '💻',
-    gradient: 'from-sky-500 to-blue-500',
     services: ['Custom website development', 'Responsive design', 'E-commerce solutions', 'Web application development'],
     focus: 'Creating beautiful, functional websites that drive business results.',
   },
@@ -101,7 +90,6 @@ const softwareServices = [
     title: 'Enterprise Solutions',
     description: 'Enterprise-grade software solutions for large organizations.',
     icon: '🏢',
-    gradient: 'from-emerald-500 to-teal-500',
     services: ['Enterprise application development', 'System integration', 'Legacy system modernization'],
     focus: 'Powering large-scale operations with robust enterprise solutions.',
   },
@@ -110,7 +98,6 @@ const softwareServices = [
     title: 'Technology Consulting',
     description: 'Strategic technology consulting to help businesses leverage technology effectively.',
     icon: '💡',
-    gradient: 'from-fuchsia-500 to-pink-500',
     services: ['Technology strategy', 'Digital transformation consulting', 'IT architecture planning'],
     focus: 'Guiding your technology journey with expert strategic advice.',
   },
@@ -119,7 +106,6 @@ const softwareServices = [
     title: 'Cybersecurity Capabilities',
     description: 'Comprehensive cybersecurity services to protect organizations from threats.',
     icon: '🔒',
-    gradient: 'from-red-500 to-rose-500',
     services: ['Security assessment', 'Threat detection and response', 'Compliance and governance', 'Security infrastructure'],
     focus: 'Protecting your business with enterprise-grade security solutions.',
   },
@@ -128,7 +114,6 @@ const softwareServices = [
     title: 'Application Transformation',
     description: 'Modernizing and transforming legacy applications for the cloud era.',
     icon: '🔄',
-    gradient: 'from-blue-600 to-indigo-600',
     services: ['Application migration', 'Cloud-native development', 'Microservices architecture'],
     focus: 'Modernizing legacy systems for the cloud-native future.',
   },
@@ -137,7 +122,6 @@ const softwareServices = [
     title: 'Infrastructure Services',
     description: 'Cloud infrastructure services for scalable and reliable operations.',
     icon: '🏗️',
-    gradient: 'from-cyan-500 to-blue-500',
     services: ['Cloud infrastructure setup', 'Infrastructure as Code', 'Disaster recovery', 'Infrastructure monitoring'],
     focus: 'Building resilient, scalable infrastructure for your business.',
   },
@@ -172,257 +156,322 @@ const keyFeatures = [
 
 export default function SoftwareSolutionsPageClient() {
   const [hoveredService, setHoveredService] = useState<string | null>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const rafRef = useRef<number | null>(null)
-
-  // Parallax for background orbs (matching Home Hero)
-  const orb1Parallax = useParallax({ speed: 20, scrub: 0.6 })
-  const orb2Parallax = useParallax({ speed: -15, scrub: 0.5 })
-
-  // Mouse tracking for cursor follow effect
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current)
-      }
-      rafRef.current = requestAnimationFrame(() => {
-        setMousePosition({ x: e.clientX, y: e.clientY })
-      })
-    }
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current)
-      }
-    }
-  }, [])
 
   return (
     <main className="min-h-screen bg-white overflow-hidden">
-      {/* Hero Section - Creative Split Design */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Premium Soft Gradient Background - Matching Home Hero */}
-        <div className="absolute inset-0 bg-gradient-to-br from-light via-white to-secondary/30 z-0" />
+      {/* Hero Section - Matching Homepage Theme */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Premium Soft Gradient Background with Hudson Colors */}
+        <div className="absolute inset-0 bg-gradient-to-br from-light via-white to-secondary/30" />
         
-        {/* Animated Gradient Orbs with Parallax - Matching Home Hero */}
-        <div
-          ref={orb1Parallax}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/15 to-primary/8 rounded-full blur-3xl opacity-60 z-0"
-        />
-        <div
-          ref={orb2Parallax}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/15 to-accent/8 rounded-full blur-3xl opacity-60 z-0"
-        />
+        {/* Animated Gradient Orbs with Parallax - Hudson Colors */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/20 to-primary/10 rounded-full blur-3xl opacity-70" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/20 to-accent/10 rounded-full blur-3xl opacity-70" />
+        <div className="absolute top-1/2 right-1/3 w-72 h-72 bg-gradient-to-br from-accent/15 to-primary/15 rounded-full blur-3xl opacity-60" />
 
-        {/* Interactive Cursor Follow Effect - Matching Home Hero */}
-        <motion.div
-          className="absolute w-96 h-96 bg-gradient-to-r from-accent/8 to-primary/8 rounded-full blur-3xl pointer-events-none opacity-40 z-0"
-          animate={{
-            x: mousePosition.x - 192,
-            y: mousePosition.y - 192,
-          }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
-        />
-
-        {/* Subtle Grid Pattern - Matching Home Hero */}
+        {/* Subtle Grid Pattern with Hudson Colors */}
         <div 
-          className="absolute inset-0 opacity-[0.015] z-0" 
+          className="absolute inset-0 opacity-[0.02]" 
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.08) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(0,0,0,0.08) 1px, transparent 1px)`,
+            backgroundImage: `linear-gradient(rgba(240, 90, 40, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
           }} 
         />
 
         <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-            {/* Left Side - Text Content */}
+          <div className="flex flex-col items-center justify-center min-h-[85vh] lg:min-h-[90vh] py-12 lg:py-20 text-center">
+            {/* Badge */}
             <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <motion.div
-                className="inline-block"
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              >
-                <span className="px-6 py-2 rounded-full bg-white/80 backdrop-blur-md border-2 border-accent/30 text-accent font-bold text-sm shadow-lg">
-                  Enterprise Software Development
-                </span>
-              </motion.div>
-
-              <div className="space-y-6">
-                <h1 className="text-7xl sm:text-8xl lg:text-9xl font-black leading-[0.9]">
-                  <span className="block bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-                    Software
-                  </span>
-                  <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                    Solutions
-                  </span>
-                </h1>
-                
-                <motion.p
-                  className="text-2xl sm:text-3xl text-text leading-relaxed font-light max-w-xl"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
-                >
-                  Transform your business with{' '}
-                  <span className="font-bold text-accent">custom software</span>
-                  ,{' '}
-                  <span className="font-bold text-primary">enterprise applications</span>
-                  , and{' '}
-                  <span className="font-bold text-accent">digital transformation</span>
-                </motion.p>
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-accent/15 shadow-sm">
+                <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+                <span className="text-xs font-semibold text-accent tracking-wide uppercase">Enterprise Software Development</span>
               </div>
-
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 pt-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
-                <Link
-                  href="/contact"
-                  className="group relative px-10 py-5 bg-gradient-to-r from-accent to-primary text-white font-bold rounded-2xl overflow-hidden shadow-2xl hover:shadow-accent/50 transition-all duration-300"
-                >
-                  <span className="relative z-10">Get Started Today</span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-primary to-accent"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </Link>
-                <Link
-                  href="/about"
-                  className="px-10 py-5 bg-white/90 backdrop-blur-md border-2 border-accent/30 text-accent font-bold rounded-2xl hover:bg-accent/10 transition-all duration-300 shadow-lg"
-                >
-                  Learn More
-                </Link>
-              </motion.div>
             </motion.div>
 
-            {/* Right Side - Visual Elements */}
-            <motion.div
-              className="relative h-[600px] lg:h-[700px]"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2 }}
+            {/* Main Heading */}
+            <motion.h1
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight max-w-4xl mx-auto mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              {/* Floating Service Icons */}
-              {softwareServices.slice(0, 6).map((service, index) => {
-                const angle = (index * 60) * (Math.PI / 180)
-                const radius = 200
-                const x = Math.cos(angle) * radius
-                const y = Math.sin(angle) * radius
-                
-                return (
+              <span className="block text-dark mb-2">Software</span>
+              <span className="block gradient-text">Solutions</span>
+            </motion.h1>
+
+            {/* Description */}
+            <motion.p
+              className="text-lg sm:text-xl lg:text-2xl text-text/70 leading-relaxed max-w-3xl mx-auto mb-10"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              Transform your business with{' '}
+              <span className="font-bold text-accent">custom software</span>
+              ,{' '}
+              <span className="font-bold text-accent">enterprise applications</span>
+              , and{' '}
+              <span className="font-bold text-accent">digital transformation</span>
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 pt-2 justify-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+            >
+              <Link href="/contact" className="group relative inline-block">
+                <motion.button
+                  className="relative px-8 py-4 lg:px-10 lg:py-4.5 bg-gradient-to-r from-accent to-accent/90 text-white rounded-xl lg:rounded-2xl font-semibold text-base lg:text-lg shadow-lg shadow-accent/20 overflow-hidden w-full sm:w-auto transition-all duration-200"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Get Started Today
+                    <motion.span
+                      className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200"
+                      aria-hidden="true"
+                    >
+                      →
+                    </motion.span>
+                  </span>
                   <motion.div
-                    key={service.id}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      x: x,
-                      y: y,
-                    }}
-                    transition={{ 
-                      delay: 0.8 + index * 0.1,
-                      type: "spring",
-                      stiffness: 100
-                    }}
-                    whileHover={{ scale: 1.2, zIndex: 10 }}
-                  >
-                    <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-2xl cursor-pointer border-2 border-accent/30">
-                      <span className="text-4xl">{service.icon}</span>
-                    </div>
-                  </motion.div>
-                )
-              })}
-              
-              {/* Central Hub - Hudson Colors */}
-              <motion.div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full bg-gradient-to-br from-accent via-primary to-accent flex items-center justify-center shadow-2xl border-4 border-accent/40"
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
-              >
-                <span className="text-5xl">💼</span>
-              </motion.div>
+                    className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </motion.button>
+              </Link>
+
+              <Link href="/about" className="group relative inline-block">
+                <motion.button
+                  className="relative px-8 py-4 lg:px-10 lg:py-4.5 bg-white/60 backdrop-blur-sm border-2 border-dark/10 text-dark rounded-xl lg:rounded-2xl font-semibold text-base lg:text-lg shadow-sm overflow-hidden group-hover:border-accent/40 transition-all duration-200 w-full sm:w-auto"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Learn More
+                    <motion.span
+                      className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200"
+                      aria-hidden="true"
+                    >
+                      →
+                    </motion.span>
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/8 to-accent/0"
+                    initial={{ scale: 0 }}
+                    whileHover={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.button>
+              </Link>
             </motion.div>
           </div>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+          animate={{ y: [0, 8, 0] }} 
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="text-[10px] text-text/30 font-medium tracking-wider uppercase">Scroll</span>
+          <div className="w-5 h-8 border border-text/15 rounded-full flex justify-center p-1.5">
+            <motion.div 
+              className="w-1.5 h-1.5 bg-accent/60 rounded-full" 
+              animate={{ y: [0, 16, 0] }} 
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }} 
+            />
+          </div>
+        </motion.div>
       </section>
 
-      {/* Core Capabilities - Creative Numbered List */}
-      <section className="relative py-32 bg-white overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(240,90,40,0.03)_50%,transparent_100%)]" />
+      {/* Core Capabilities - Enhanced Space Utilization */}
+      <section className="relative py-16 lg:py-24 overflow-hidden bg-gradient-to-b from-white via-light to-white">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-accent/8 to-primary/5 rounded-full blur-3xl opacity-60" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-primary/8 to-accent/5 rounded-full blur-3xl opacity-60" />
+        </div>
         
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div 
+          className="absolute inset-0 opacity-[0.02] pointer-events-none"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+            backgroundSize: '40px 40px',
+          }} 
+        />
+        
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
           <motion.div
-            className="mb-20"
+            className="text-center mb-12 lg:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-4">
-              <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-                Core
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                Capabilities
-              </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 tracking-tight">
+              <span className="gradient-text">Core</span>
+              <span className="text-dark"> </span>
+              <span className="gradient-text">Capabilities</span>
             </h2>
+            <p className="text-base lg:text-lg text-text/70 max-w-2xl mx-auto leading-relaxed">
+              Comprehensive software solutions tailored to your business needs
+            </p>
           </motion.div>
 
-          <div className="space-y-4">
+          {/* Optimized Grid Layout - Better Space Utilization */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
             {keyFeatures.map((feature, index) => (
               <motion.div
                 key={feature.title}
                 className="group relative"
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.08,
+                  type: "spring",
+                  stiffness: 100
+                }}
                 onHoverStart={() => setHoveredService(feature.title)}
                 onHoverEnd={() => setHoveredService(null)}
               >
-                <div className="relative flex flex-col lg:flex-row items-start lg:items-center gap-8 p-8 lg:p-12 rounded-3xl bg-gradient-to-r from-white via-secondary/50 to-white border-2 border-transparent hover:border-accent/30 hover:shadow-2xl transition-all duration-500 overflow-hidden">
-                  {/* Large Number */}
-                  <div className="flex-shrink-0">
+                <div className="relative h-full bg-white/80 backdrop-blur-sm rounded-2xl p-5 lg:p-6 border border-accent/10 shadow-md hover:shadow-xl hover:border-accent/30 transition-all duration-300 overflow-hidden flex flex-col">
+                  {/* Decorative Corner Accent */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  {/* Number Badge - Compact Design */}
+                  <div className="relative mb-4 flex items-center justify-center">
                     <div className="relative">
-                      <span className="text-9xl sm:text-[12rem] font-black text-secondary group-hover:text-accent/20 transition-colors duration-500">
-                        {feature.number}
-                      </span>
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-6xl">
-                        {feature.icon}
+                      {/* Outer Ring */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-accent/15 via-accent/8 to-primary/8 blur-sm group-hover:blur-md transition-all duration-300" />
+                      
+                      {/* Number Circle - Smaller */}
+                      <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-accent/15 to-primary/10 border-2 border-accent/20 flex items-center justify-center backdrop-blur-md shadow-md group-hover:scale-110 group-hover:border-accent/40 transition-all duration-300">
+                        <span className="text-lg font-black text-accent">{feature.number}</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="flex-1 space-y-4">
-                    <h3 className="text-4xl sm:text-5xl font-bold text-primary">
+                  {/* Content - Compact */}
+                  <div className="relative z-10 space-y-2 flex-1 flex flex-col">
+                    <h3 className="text-lg lg:text-xl font-bold text-dark group-hover:text-accent transition-colors duration-300 leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-xl text-text leading-relaxed max-w-2xl">
+                    <p className="text-sm lg:text-base text-text/70 leading-relaxed flex-1">
                       {feature.description}
                     </p>
                   </div>
 
-                  {/* Hover Gradient Overlay - Hudson Colors */}
+                  {/* Bottom Accent Line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-accent/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/0 via-accent/0 to-primary/0 group-hover:from-accent/5 group-hover:via-accent/3 group-hover:to-primary/5 transition-all duration-300 pointer-events-none" />
+                  
+                  {/* Shine Effect on Hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services - Matching Homepage Card Style */}
+      <section className="relative py-28 lg:py-36 overflow-hidden bg-light">
+        <div className="absolute inset-0 opacity-[0.012] pointer-events-none">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(45deg, currentColor 1px, transparent 1px),
+                              linear-gradient(-45deg, currentColor 1px, transparent 1px)`,
+            backgroundSize: '40px 40px',
+          }} />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
+          <motion.div
+            className="text-center mb-16 lg:mb-24"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 lg:mb-8 tracking-tight">
+              <span className="gradient-text">Our Solutions</span>
+            </h2>
+            <p className="text-xl lg:text-2xl text-text/70 max-w-3xl mx-auto leading-relaxed">
+              A complete suite of software services tailored to your needs
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {softwareServices.map((service, index) => (
+              <motion.div
+                key={service.id}
+                className="group relative h-full"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.05 }}
+                onHoverStart={() => setHoveredService(service.id)}
+                onHoverEnd={() => setHoveredService(null)}
+              >
+                <div className="relative h-full bg-white/70 backdrop-blur-md rounded-[32px] p-8 overflow-hidden border border-black/5 hover:border-accent/20 shadow-lg hover:shadow-xl transition-all duration-500">
+                  {/* Icon */}
+                  <div className="mb-6 flex items-center justify-center">
+                    <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-accent/12 to-accent/6 border border-accent/20 flex items-center justify-center backdrop-blur-md shadow-[0_4px_12px_rgba(251,146,60,0.1)]">
+                      <span className="text-3xl">{service.icon}</span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <h3 className="text-2xl lg:text-3xl font-bold mb-3 text-dark">
+                      {service.title}
+                    </h3>
+                    <p className="text-text/70 leading-relaxed mb-6 text-[15px] lg:text-base">
+                      {service.description}
+                    </p>
+                    
+                    {/* Services - Compact List */}
+                    <div className="space-y-2">
+                      {service.services.slice(0, 3).map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm">
+                          <div className="w-2 h-2 rounded-full bg-accent/40" />
+                          <span className="text-text/60">{item}</span>
+                        </div>
+                      ))}
+                      {service.services.length > 3 && (
+                        <div className="text-sm text-text/50">
+                          +{service.services.length - 3} more services
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Hover Gradient Overlay */}
                   <AnimatePresence>
-                    {hoveredService === feature.title && (
+                    {hoveredService === service.id && (
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-accent/10 via-primary/10 to-accent/10"
+                        className="absolute inset-0 bg-gradient-to-br from-accent/5 via-primary/5 to-accent/5 rounded-[32px]"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -436,97 +485,8 @@ export default function SoftwareSolutionsPageClient() {
         </div>
       </section>
 
-      {/* Services - Creative Grid with Overlapping Elements */}
-      <section className="relative py-32 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
-          <motion.div
-            className="text-center mb-24"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6">
-              <span className="bg-gradient-to-r from-accent via-primary to-accent bg-clip-text text-transparent">
-                Our Solutions
-              </span>
-            </h2>
-            <p className="text-2xl text-text max-w-3xl mx-auto">
-              A complete suite of software services tailored to your needs
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {softwareServices.map((service, index) => (
-              <motion.div
-                key={service.id}
-                className="group relative"
-                initial={{ opacity: 0, y: 50, rotateY: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.03 }}
-                style={{ perspective: 1000 }}
-                onHoverStart={() => setHoveredService(service.id)}
-                onHoverEnd={() => setHoveredService(null)}
-              >
-                <div className="relative h-full bg-white rounded-3xl p-8 border-2 border-secondary hover:border-accent/30 overflow-hidden transition-all duration-500">
-                  {/* Gradient Background - Hudson Colors */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
-                  {/* Icon - Large and Prominent - Hudson Colors */}
-                  <div className="relative mb-6">
-                    <motion.div
-                      className="w-24 h-24 rounded-3xl bg-gradient-to-br from-accent to-primary flex items-center justify-center shadow-2xl border-2 border-accent/30"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      <span className="text-5xl">{service.icon}</span>
-                    </motion.div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <h3 className="text-3xl font-bold mb-3 text-primary group-hover:text-white transition-colors duration-500">
-                      {service.title}
-                    </h3>
-                    <p className="text-text group-hover:text-white/90 mb-6 leading-relaxed transition-colors duration-500">
-                      {service.description}
-                    </p>
-                    
-                    {/* Services - Compact List */}
-                    <div className="space-y-2">
-                      {service.services.slice(0, 3).map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-2 text-sm">
-                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-accent to-primary group-hover:bg-white transition-colors duration-500" />
-                          <span className="text-text group-hover:text-white/90 transition-colors duration-500">{item}</span>
-                        </div>
-                      ))}
-                      {service.services.length > 3 && (
-                        <div className="text-sm text-text/60 group-hover:text-white/80 transition-colors duration-500">
-                          +{service.services.length - 3} more services
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Decorative Elements - Hudson Colors */}
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-accent to-primary opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500" />
-                  <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-gradient-to-tr from-accent to-primary opacity-10 rounded-full blur-2xl group-hover:opacity-20 transition-opacity duration-500" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - Creative Split Design - Hudson Colors */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent via-primary to-accent" />
+      {/* CTA Section - Matching Homepage Style */}
+      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-primary via-accent to-primary">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent_70%)]" />
         
         <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 z-10">
