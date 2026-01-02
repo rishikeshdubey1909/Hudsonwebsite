@@ -177,10 +177,23 @@ export function initAllGSAPAnimations() {
   if (typeof window === 'undefined') return
 
   const initAnimations = () => {
-    initSectionReveals()
-    initCardReveals()
-    initCardHovers()
-    initCTAHovers()
+    // Use requestIdleCallback for non-critical animations to improve INP
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        initSectionReveals()
+        initCardReveals()
+        initCardHovers()
+        initCTAHovers()
+      }, { timeout: 2000 })
+    } else {
+      // Fallback for browsers without requestIdleCallback
+      setTimeout(() => {
+        initSectionReveals()
+        initCardReveals()
+        initCardHovers()
+        initCTAHovers()
+      }, 100)
+    }
   }
 
   // Wait for DOM to be ready
@@ -190,7 +203,7 @@ export function initAllGSAPAnimations() {
     initAnimations()
   }
 
-  // Refresh on resize with debounce
+  // Refresh on resize with debounce - use passive listener for better performance
   let resizeTimer: ReturnType<typeof setTimeout>
   const handleResize = () => {
     clearTimeout(resizeTimer)

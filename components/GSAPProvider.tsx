@@ -13,13 +13,30 @@ function GSAPProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const cleanup = initGSAP()
     
-    // Initialize all animations after a short delay to ensure DOM is ready
-    const timer = setTimeout(() => {
-      initAllGSAPAnimations()
-    }, 100)
+    // Use requestIdleCallback for non-critical animations to improve INP
+    const initAnimations = () => {
+      if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          initAllGSAPAnimations()
+        }, { timeout: 2000 })
+      } else {
+        // Fallback for browsers without requestIdleCallback
+        setTimeout(() => {
+          initAllGSAPAnimations()
+        }, 100)
+      }
+    }
+
+    // Wait for DOM to be ready
+    if (typeof window !== 'undefined') {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAnimations, { once: true })
+      } else {
+        initAnimations()
+      }
+    }
 
     return () => {
-      clearTimeout(timer)
       if (cleanup) cleanup()
     }
   }, [])

@@ -5,17 +5,17 @@ import GSAPProvider from '@/components/GSAPProvider'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Hudson IT & Manpower Services | Global Workforce Solutions',
-    template: '%s | Hudson IT & Manpower Services'
+    default: 'Hudson IT & Manpower Services | Global Staffing',
+    template: '%s | Hudson'
   },
-  description: 'Hudson delivers reliable, compliant and scalable staffing solutions for Oil & Gas, IT, and Hospitality industries worldwide. Connect with 10,000+ verified professionals.',
+  description: 'Reliable staffing solutions for Oil & Gas, IT, and Hospitality industries. Connect with 10,000+ verified professionals worldwide.',
   keywords: ['staffing solutions', 'oil and gas staffing', 'IT staffing', 'hospitality staffing', 'workforce solutions', 'talent acquisition', 'Hudson'],
   authors: [{ name: 'Hudson Information Technology & Manpower Services' }],
   creator: 'Hudson IT & Manpower Services',
   publisher: 'Hudson IT & Manpower Services',
   metadataBase: new URL('https://hudsonit.com'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://hudsonit.com/',
   },
   openGraph: {
     type: 'website',
@@ -64,6 +64,12 @@ export const metadata: Metadata = {
     ],
     shortcut: '/images/hudson-logo.png',
   },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
 }
 
 export default function RootLayout({
@@ -79,6 +85,8 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/images/hudson-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
       </head>
       <body className="min-h-screen bg-white">
         <Preloader />

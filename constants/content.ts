@@ -52,6 +52,10 @@ export const BRAND = {
   },
   social: {
     linkedin: 'https://www.linkedin.com/company/hudsonit',
+    youtube: 'https://www.youtube.com/@hudsonit',
+    twitter: 'https://twitter.com/hudsonit',
+    instagram: 'https://www.instagram.com/hudsonit',
+    facebook: 'https://www.facebook.com/hudsonit',
   },
 } as const
 

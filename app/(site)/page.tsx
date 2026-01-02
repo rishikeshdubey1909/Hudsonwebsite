@@ -10,11 +10,11 @@ import SolutionsHeader from '@/components/SolutionsHeader'
 import { HOME, BRAND } from '@/constants/content'
 
 export const metadata: Metadata = {
-  title: 'Global Workforce Solutions for Oil & Gas, IT & Hospitality',
-  description: 'Hudson delivers reliable, compliant and scalable staffing solutions for Oil & Gas, IT, and Hospitality industries worldwide. Connect with 10,000+ verified professionals.',
+  title: 'Global Workforce Solutions | Oil & Gas, IT & Hospitality',
+  description: 'Reliable staffing solutions for Oil & Gas, IT, and Hospitality industries. Connect with 10,000+ verified professionals worldwide.',
   keywords: ['staffing solutions', 'oil and gas staffing', 'IT staffing', 'hospitality staffing', 'workforce solutions', 'talent acquisition', 'Hudson', 'global staffing', 'manpower services'],
   alternates: {
-    canonical: '/',
+    canonical: 'https://hudsonit.com/',
   },
   openGraph: {
     title: 'Hudson IT & Manpower Services | Global Workforce Solutions',
@@ -58,7 +58,11 @@ const organizationSchema = {
   },
   sameAs: [
     BRAND.social.linkedin,
-  ],
+    BRAND.social.youtube,
+    BRAND.social.twitter,
+    BRAND.social.instagram,
+    BRAND.social.facebook,
+  ].filter(Boolean),
 }
 
 // Schema Markup for Website

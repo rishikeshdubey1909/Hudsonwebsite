@@ -15,21 +15,27 @@ export default function Preloader() {
     
     setMounted(true)
     const startTime = Date.now()
-    const minDisplayTime = 2000 // Minimum 2 seconds
+    const minDisplayTime = 1500 // Reduced to 1.5 seconds
     
     let intervalId: NodeJS.Timeout | null = null
     let hideTimeout: NodeJS.Timeout | null = null
+    let rafId: number | null = null
     
-    // Start progress immediately
-    intervalId = setInterval(() => {
+    // Use requestAnimationFrame for smoother progress updates
+    const updateProgress = () => {
       setProgress((prev) => {
         if (prev >= 100) {
-          if (intervalId) clearInterval(intervalId)
           return 100
         }
-        return Math.min(prev + 2, 100)
+        return Math.min(prev + 1.5, 100)
       })
-    }, 50)
+      if (progress < 100) {
+        rafId = requestAnimationFrame(updateProgress)
+      }
+    }
+    
+    // Start progress with requestAnimationFrame for better performance
+    rafId = requestAnimationFrame(updateProgress)
 
     // Function to hide preloader
     const hidePreloader = () => {
@@ -65,6 +71,7 @@ export default function Preloader() {
     return () => {
       if (intervalId) clearInterval(intervalId)
       if (hideTimeout) clearTimeout(hideTimeout)
+      if (rafId) cancelAnimationFrame(rafId)
       clearTimeout(safetyTimeout)
       window.removeEventListener('load', handleLoad)
     }

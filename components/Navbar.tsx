@@ -116,9 +116,10 @@ export default function Navbar() {
 
           {/* Mobile Menu Button - Modern */}
           <button
-            className="lg:hidden p-2 z-10"
+            className="lg:hidden p-3 z-10 min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             <motion.div
               className="w-6 h-5 flex flex-col justify-between"
