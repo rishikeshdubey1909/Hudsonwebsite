@@ -51,7 +51,7 @@ export const BRAND = {
     },
   },
   social: {
-    linkedin: 'https://www.linkedin.com/company/hudsonit',
+    linkedin: 'https://www.linkedin.com/company/hudsonitandmanpower',
     youtube: 'https://www.youtube.com/@hudsonit',
     twitter: 'https://twitter.com/hudsonit',
     instagram: 'https://www.instagram.com/hudsonit',
